@@ -1,17 +1,170 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<html></html>
+<html lang="en"></html>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
-</html>
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>
+		{% block title %}
+			Chuko Manga
+		{% endblock %}
+	</title>
+
+	{% block stylesheets %}
+		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
+	{% endblock %}
+
+	{% block javascripts %}
+		{% block importmap %}
+			{{ importmap('app') }}
+		{% endblock %}
+	{% endblock %}
+</head>
+<body>
+
+	<!-- HEADER BEGIN -->
+	<header class="header">
+
+		<section
+			class="flex">
+
+			<!-- NAVBAR BEGIN -->
+
+			<div
+				class="logo-nav">
+				<!-- <a href="home.php" class="logo"> -->
+				<img src="{}">
+				<span>CHUKO MANGA</span>
+				<!-- </a> -->
+			</div>
+
+
+			<nav class="navbar">
+
+				<a href="#">Se Connecter</a>
+				<a href="#">S'inscrire</a>
+				<a href="#">Vendre</a>
+				<a href="#">Contact</a>
+
+			</nav>
+
+			<div class="icons">
+
+				<div id="menu-btn" class="fas fa-bars"></div>
+
+				<a href="cart.php">
+					<i class="fas fa-shopping-cart"></i>
+					<span></span>
+				</a>
+				<div id="user-btn" class="fas fa-user"></div>
+			</div>
+
+			<div class="profile">
+
+				<p>LOGIN/INSCRIPTION</p>
+				<a href="update_user.php" class="btn">Update Profile.</a>
+				<div class="flex-btn">
+					<a href="user_register.php" class="option-btn">Register.</a>
+					<a href="user_login.php" class="option-btn">Login.</a>
+				</div>
+				<a href="components/user_logout.php" class="delete-btn">logout</a>
+
+				<p>Please Login Or Register First to proceed !</p>
+				<div class="flex-btn">
+					<a href="user_register.php" class="option-btn">Register</a>
+					<a href="user_login.php" class="option-btn">Login</a>
+				</div>
+
+
+			</div>
+			<!-- NAVBAR END -->
+
+		</section>
+
+	</header>
+	<!-- HEADER END -->
+
+	{% block body %}{% endblock %}
+
+	<!-- FOOTER BEGIN  -->
+	<footer class="footer">
+
+		<section class="grid">
+
+			<div class="box">
+				<h3>Quick links</h3>
+				<a href="home.php">
+					<i class="fas fa-angle-right"></i>
+					Home</a>
+				<a href="about.php">
+					<i class="fas fa-angle-right"></i>
+					About</a>
+				<a href="shop.php">
+					<i class="fas fa-angle-right"></i>
+					Categories</a>
+				<a href="contact.php">
+					<i class="fas fa-angle-right"></i>
+					Contact</a>
+			</div>
+
+			<div class="box">
+				<h3>Extra links</h3>
+				<a href="user_login.php">
+					<i class="fas fa-angle-right"></i>
+					Login</a>
+				<a href="user_register.php">
+					<i class="fas fa-angle-right"></i>
+					Register</a>
+				<a href="cart.php">
+					<i class="fas fa-angle-right"></i>
+					Cart</a>
+				<a href="orders.php">
+					<i class="fas fa-angle-right"></i>
+					Orders</a>
+			</div>
+
+			<div class="box">
+				<h3>Contact Us.</h3>
+				<a href="tel:9800000000">
+					<i class="fas fa-phone"></i>
+					+977 980 000 0000</a>
+
+				<a href="mailto:harshchy143@gmail.com">
+					<i class="fas fa-envelope"></i>
+					testemail@gmail.com</a>
+				<a href="https://www.google.com/myplace">
+					<i class="fas fa-map-marker-alt"></i>
+					Saint Etienne, France
+				</a>
+			</div>
+
+			<div class="box">
+				<h3>Follow Us</h3>
+				<a href="https://www.facebook.com/harshchaudharynp" target="_blank">
+					<i class="fab fa-facebook-f"></i>facebook</a>
+				<a href="https://twitter.com/HarshCh53587355" target="_blank">
+					<i class="fab fa-twitter"></i>Twitter</a>
+				<a href="https://www.instagram.com/harshchy__/" target="_blank">
+					<i class="fab fa-instagram"></i>Instagram</a>
+				<a href="https://www.linkedin.com/in/harsh-chaudhary-15763a150/" target="_blank">
+					<i class="fab fa-linkedin"></i>Linkedin</a>
+			</div>
+
+		</section>
+
+		<div class="credit">&copy; copyright @
+					         2024 by
+			<span>AKNL</span>
+			| all rights reserved!
+		</div>
+
+	</footer>
+	<!-- FOOTER END -->
+
+</body></html>
