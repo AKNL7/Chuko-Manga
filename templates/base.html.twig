@@ -16,15 +16,25 @@
 	</title>
 
 	{% block stylesheets %}
-		<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+		<link
+		rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
 
+		<!-- font awesome cdn lien  -->
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+		<!-- custom css file lien -->
+		<link rel="stylesheet" href="../">
 	{% endblock %}
 
+
 	{% block javascripts %}
+		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 		{% block importmap %}
 			{{ importmap('app') }}
 		{% endblock %}
 	{% endblock %}
+
 </head>
 <body>
 
@@ -39,7 +49,7 @@
 			<div
 				class="logo-nav">
 				<!-- <a href="home.php" class="logo"> -->
-				<img src="{}">
+				<img src="{{asset('./images/logo/LogoChukoManga.png')}}">
 				<span>CHUKO MANGA</span>
 				<!-- </a> -->
 			</div>
@@ -47,10 +57,11 @@
 
 			<nav class="navbar">
 
-				<a href="#">Se Connecter</a>
-				<a href="#">S'inscrire</a>
+				<a href="{{path('app_login')}}">Se Connecter</a>
+				<a href="{{path('app_register')}}">S'inscrire</a>
 				<a href="#">Vendre</a>
-				<a href="#">Contact</a>
+                <a href="{{path('app_contact')}}">Contact</a>
+
 
 			</nav>
 
@@ -70,15 +81,15 @@
 				<p>LOGIN/INSCRIPTION</p>
 				<a href="update_user.php" class="btn">Update Profile.</a>
 				<div class="flex-btn">
-					<a href="user_register.php" class="option-btn">Register.</a>
-					<a href="user_login.php" class="option-btn">Login.</a>
+					<a href="{{path('app_register')}}" class="option-btn">Register.</a>
+					<a href="{{path('app_login')}}" class="option-btn">Login.</a>
 				</div>
 				<a href="components/user_logout.php" class="delete-btn">logout</a>
 
 				<p>Please Login Or Register First to proceed !</p>
 				<div class="flex-btn">
-					<a href="user_register.php" class="option-btn">Register</a>
-					<a href="user_login.php" class="option-btn">Login</a>
+					<a href="{{path('app_register')}}" class="option-btn">Register</a>
+					<a href="{{path('app_login')}}" class="option-btn">Login</a>
 				</div>
 
 
@@ -99,26 +110,29 @@
 
 			<div class="box">
 				<h3>Quick links</h3>
-				<a href="home.php">
+				<a href="{{path('app_home')}}">
 					<i class="fas fa-angle-right"></i>
 					Home</a>
-				<a href="about.php">
+              <a href="">
+
 					<i class="fas fa-angle-right"></i>
 					About</a>
 				<a href="shop.php">
 					<i class="fas fa-angle-right"></i>
 					Categories</a>
-				<a href="contact.php">
+            <a href="{{path('app_contact')}}">
+
 					<i class="fas fa-angle-right"></i>
 					Contact</a>
 			</div>
 
 			<div class="box">
 				<h3>Extra links</h3>
-				<a href="user_login.php">
+				<a href="{{path('app_login')}}">
 					<i class="fas fa-angle-right"></i>
 					Login</a>
-				<a href="user_register.php">
+             <a href="{{path('app_register')}}">
+
 					<i class="fas fa-angle-right"></i>
 					Register</a>
 				<a href="cart.php">
@@ -159,12 +173,19 @@
 		</section>
 
 		<div class="credit">&copy; copyright @
-					         2024 by
+								         2024 by
 			<span>AKNL</span>
 			| all rights reserved!
 		</div>
 
 	</footer>
 	<!-- FOOTER END -->
+
+
+	{# // <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> #}
+
+{% block CarouselJavascript %}{% endblock %}
+
+
 
 </body></html>

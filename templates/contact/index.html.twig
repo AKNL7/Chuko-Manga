@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<section class="contact">
+	<div class="banner">
+		<img src="{{asset('./images/banner/bannerChuko3.png')}}" alt="Banner Image">
+		<div class="category_title">Contact
+		</div>
+	</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/Dev404/Chuko_Manga/src/Controller/ContactController.php</code></li>
-        <li>Your template at <code>C:/Users/Dev404/Chuko_Manga/templates/contact/index.html.twig</code></li>
-    </ul>
-</div>
+	<form action="" method="post">
+		<h3>Nous vous repondons dans les meilleurs delais</h3>
+		<input type="text" name="name" placeholder="Name" required maxlength="20" class="box">
+		<input type="email" name="email" placeholder="Mail" required maxlength="50" class="box">
+		<input type="number" name="number" min="0" max="9999999999" placeholder="Number" required onkeypress="if(this.value.length == 10) return false;" class="box">
+		<textarea name="msg" class="box" placeholder="Message" cols="30" rows="10"></textarea>
+		<input type="submit" value="send message" name="send" class="btn">
+	</form>
+
+</section>
+
+
+
 {% endblock %}
