@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+<section class="form-container">
+
+
+  <form>
+  <h3>POSTER VOTRE ANNONCE</h3>
+{{ form_start(form) }}
+
+{{ form_errors(form) }}
+
+<input type="text" name="Titre" value="{{ field_value(form.postTitle) }}" placeholder="Titre" class="box">
+
+<input type="text" name="{{ field_name(form.postEdition) }}" value="{{ field_value(form.postEdition) }}" placeholder="Edition" class="box">
+
+
+
+<div class="box-container">
+
+{{form_row(form.postCondition)}}
+
+{{form_row(form.postImage)}}
+
+</div>
+
+
+<input type="number" name="{{ field_name(form.postPrice) }}" value="{{ field_value(form.postPrice) }}" placeholder="Prix" class="box">
+
+
+
+
+
+
+{# {{ form_end(form) }} #}
+</form>
+</section>
+
+
+
+
+
+{% endblock %}

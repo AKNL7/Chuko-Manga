@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello QuickViewController!
+{% endblock %}
+
+{% block body %}
+	<section class="quick-view">
+
+
+		<div class="banner">
+			<img
+			src="{{asset('./images/banner/bannerChuko11.png')}}" alt="">
+
+		{# <div class="category_title heading">Post title</div> #}
+		</div>
+		<!-- DEBUT FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
+		<form action="" method="post" class="box">
+			<input type="hidden" name="pid" value="">
+			<input type="hidden" name="name" value="">
+			<input type="hidden" name="price" value="">
+			<input type="hidden" name="image" value="">
+			<div class="row">
+				<div class="image-container">
+					<div class="main-image">
+						<img src="./Assets/images/9782344048078-001-T.jpeg" alt="">
+					</div>
+					<div class="sub-image">
+						<img src="" alt="">
+						<img src="" alt="">
+						<img src="" alt="">
+					</div>
+				</div>
+				<div class="content">
+					<div class="name">
+						Titre de l'annonce
+					</div>
+					<div class="flex">
+						<div class="price">
+							<span>Prix
+							</span>
+							<span>€</span>
+						</div>
+
+					</div>
+					<div class="details">
+						description
+						<div class="product_state">
+							<span>Etat :
+							</span>
+							<span>Neuf</span>
+						</div>
+						<div class="product_edition">
+							<span>Edition :
+							</span>
+							<span>Kana</span>
+						</div>
+						<div class="product_seller">
+							Vendeur : Nom Vendeur
+
+						</div>
+					</div>
+					<div class="flex-btn">
+						<input type="submit" value="AJOUTER AU PANIER" class="btn" name="add_to_cart">
+					</div>
+
+					<div class="product_resume">
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quaerat.
+																				                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, porro.
+						</p>
+					</div>
+
+				</div>
+			</div>
+		</form>
+
+		<!-- FIN FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
+
+		<!-- Balise p en display si rien à été ajouté au panier -->
+		<p class="empty">Panier vide</p>
+
+
+	</section>
+
+{% endblock %}

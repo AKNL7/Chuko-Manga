@@ -1,52 +1,10 @@
-
-
- let navbar = document.querySelector(".header .flex .navbar");
- let profile = document.querySelector(".header .flex .profile");
-
- document.querySelector("#menu-btn").onclick = () => {
-   navbar.classList.toggle("active");
-   profile.classList.remove("active");
- };
-
- document.querySelector("#user-btn").onclick = () => {
-   profile.classList.toggle("active");
-   navbar.classList.remove("active");
- };
-
- window.onscroll = () => {
-   navbar.classList.remove("active");
-   profile.classList.remove("active");
- };
-
- let mainImage = document.querySelector(
-   ".quick-view .box .row .image-container .main-image img"
- );
- let subImages = document.querySelectorAll(
-   ".quick-view .box .row .image-container .sub-image img"
- );
-
- subImages.forEach((images) => {
-   images.onclick = () => {
-     src = images.getAttribute("src");
-     mainImage.src = src;
-   };
- });
-
- const eyeOn = document.querySelector(".eye-on");
- const eyeOff = document.querySelector(".eye-off");
- const inputPassword = document.querySelector("#inputPassword");
-
- eyeOn.addEventListener("click", () => {
-   eyeOn.style.display = "none";
-   eyeOff.style.display = "block";
-   inputPassword.type = "text";
- });
-
- eyeOff.addEventListener("click", () => {
-   eyeOff.style.display = "block";
-   eyeOn.style.display = "none";
-   inputPassword.type = "password";
- });
+import './bootstrap.js';
+/*
+ 
+Welcome to your app's main JavaScript file!*
+This file will be included onto the page via the importmap() Twig function,
+which should already be in your base.html.twig.
+*/
 import './styles/app.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+<section class="products">
+	<div class="banner">
+		<img src={{asset('./images/banner/bannerChuko6.png')}} alt="Banner Image">
+		<div class="category_title">Category Name</div>
+	</div>
+
+
+	<div class="box-container">
+
+
+		<form action="" method="post" class="box">
+			<input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
+			<input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+			<input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
+			<input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
+			<button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
+			<a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
+			<img src="./Assets/images/9782382754665_1_75.jpg" alt="">
+
+			<div class="name">
+				Titre de l'annonce
+
+			</div>
+			<div class="flex">
+				<div class="price">
+					<span>Nrs.</span>
+
+				</div>
+				<input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
+			</div>
+			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
+		</form>
+
+
+	</div>
+
+</section>
+
+
+{% endblock %}

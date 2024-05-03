@@ -1,23 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscrivez Vous{% endblock %}
+{% block title %}Inscrivez Vous
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+	<section class="form-container">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+
+		<form action="" method="post">
+
+			{{ form_errors(registrationForm) }}
+
+			{{ form_start(registrationForm) }}
+
+		     <h3>Inscrivez Vous</h3>
+
+			<input name="{{ field_name(registrationForm.firstName) }}" value="{{ field_value(registrationForm.firstName) }}" placeholder="{{ field_label(registrationForm.firstName) }}" class="box">
+
+			<input name="{{ field_name(registrationForm.lastName) }}" value="{{ field_value(registrationForm.lastName) }}" placeholder="{{ field_label(registrationForm.lastName) }}" class="box">
+
+			<input name="{{ field_name(registrationForm.email) }}" value="{{ field_value(registrationForm.email) }}" placeholder="{{ field_label(registrationForm.email) }}" class="box">
+
+			<input type="password" name="{{ field_name(registrationForm.plainPassword) }}" value="{{ field_value(registrationForm.plainPassword) }}" placeholder="{{ field_label(registrationForm.plainPassword) }}" class="box">
+
+			<div class="checkbox-container">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" value="{{ field_value(registrationForm.agreeTerms) }}" placeholder="{{ field_label(registrationForm.agreeTerms) }}">
+                        Accpeter les conditions générales
+					</label>
+				</div>
+						
+
+
+
+				<button type="submit" class="btn">Je m'inscris</button>
+
+				{{ form_end(registrationForm) }}
+			</form>
+		</section>
+
+	{% endblock %}

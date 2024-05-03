@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos annonces{% endblock %}
+
+{% block body %}
+
+<section class="products">
+
+	<h1 class="heading">Toutes les annonces</h1>
+
+	<!-- CARD POST BEGIN -->
+	<div class="box-container">
+
+
+		<form action="" method="post" class="box">
+			<input type="hidden" name="pid" value="product_id">
+			<input type="hidden" name="name" value="product_name">
+			<input type="hidden" name="price" value="product_price">
+			<input
+			type="hidden" name="image" value="product_image">
+
+			<!-- Wishlist link delete -->
+			<a href="quickView->product_id" class="fas fa-eye"></a>
+			<img src="{{asset('./images/post/bakitome1.jpg')}}" alt="">
+			<div class="name"></div>
+			<div class="name">
+				Titre de l'annonce
+			</div>
+			<div class="flex">
+
+				<div class="price">
+					<span>1O</span>
+					<span>€</span>
+				</div>
+
+			</div>
+			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
+		</form>
+	</div>
+	<!-- CARD POST END -->
+
+	<!-- <p class="empty">no products found!</p  -->
+</section>
+
+
+{% endblock %}
