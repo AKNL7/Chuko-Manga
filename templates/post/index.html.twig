@@ -7,15 +7,19 @@
 <section class="form-container">
 
 
-  <form>
+<form action="" method="post">
+
   <h3>POSTER VOTRE ANNONCE</h3>
 {{ form_start(form) }}
 
 {{ form_errors(form) }}
 
-<input type="text" name="Titre" value="{{ field_value(form.postTitle) }}" placeholder="Titre" class="box">
 
-<input type="text" name="{{ field_name(form.postEdition) }}" value="{{ field_value(form.postEdition) }}" placeholder="Edition" class="box">
+<input name="{{ field_name(form.postTitle) }}" value="{{ field_value(form.postTitle) }}" placeholder="{{ field_label(form.postTitle) }}" class="box">
+
+<input name="{{ field_name(form.postEdition) }}" value="{{ field_value(form.postEdition) }}" placeholder="{{ field_label(form.postEdition) }}" class="box">
+
+
 
 
 
@@ -23,19 +27,21 @@
 
 {{form_row(form.postCondition)}}
 
-{{form_row(form.postImage)}}
+{{form_row(form.postImages)}}
 
 </div>
 
-
-<input type="number" name="{{ field_name(form.postPrice) }}" value="{{ field_value(form.postPrice) }}" placeholder="Prix" class="box">
-
+<input name="{{ field_name(form.postPrice) }}" value="{{ field_value(form.postPrice) }}" placeholder="{{ field_label(form.postPrice) }}" class="box">
 
 
 
+<button type="submit" class="btn">Soumettre mon offre</button>
 
 
-{# {{ form_end(form) }} #}
+
+
+
+{{ form_end(form) }}
 </form>
 </section>
 

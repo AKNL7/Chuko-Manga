@@ -1,27 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact
+{% endblock %}
 
 {% block body %}
 
-<section class="contact">
-	<div class="banner">
-		<img src="{{asset('./images/banner/bannerChuko3.png')}}" alt="Banner Image">
-		<div class="category_title">Contact
+	<section class="contact">
+		<div class="banner">
+			<img src="{{asset('./images/banner/bannerChuko4.png')}}" alt="Banner Image">
+			<div class="category_title">Contact
+			</div>
 		</div>
-	</div>
-      <div class="contact-form-container">
-	<form action="" method="post">
-		<h3>Envoyer votre message</h3>
-		<input type="text" name="name" placeholder="Name" required maxlength="20" class="box">
-		<input type="email" name="email" placeholder="Mail" required maxlength="50" class="box">
-		<input type="number" name="number" min="0" max="9999999999" placeholder="Number" required onkeypress="if(this.value.length == 10) return false;" class="box">
-		<textarea name="msg" class="box" placeholder="Message" cols="30" rows="10"></textarea>
-		<input type="submit" value="send message" name="send" class="btn">
-	</form>
-   </div>
-</section>
+		<div class="contact-form-container">
 
+			<form action="" method="post">
+
+				<h3>Envoyer votre message</h3>
+
+
+				<input
+				type="email" name="{{ field_name(contactForm.email) }}" value="{{ field_value(contactForm.email) }}" placeholder="{{ field_label(contactForm.email) }}" class="box">
+
+
+				{# <input type="number" name="number" min="0" max="9999999999" placeholder="Number" required onkeypress="if(this.value.length == 10) return false;" class="box"> #}
+
+				<textarea name="{{ field_name(contactForm.message) }}" value="{{ field_value(contactForm.message) }}" placeholder="{{ field_label(contactForm.message) }}" class="box"></textarea>
+
+
+				<input type="submit" value="send message" name="send" class="btn">
+
+			</form>
+		</div>
+	</section>
 
 
 {% endblock %}

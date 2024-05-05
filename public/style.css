@@ -192,6 +192,7 @@ section {
 .logo-nav {
   display: flex;
   align-items: center;
+  justify-content:center;
   gap: 1rem;
 }
 
@@ -1210,7 +1211,20 @@ section {
   text-transform:uppercase;
   -webkit-text-stroke: 1.5px var(--black);
 }
+/* RESET PASSWORWRD PAGES */
 
+.check-email_container {
+ display:flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ gap: 1rem;
+ margin : 50px 0 50px 0;
+}
+
+.check-email_container p {
+  font-size: large;
+}
 /* RESPONSIVE */
 
 @media (max-width: 991px) {

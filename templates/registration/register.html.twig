@@ -33,9 +33,11 @@
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" value="{{ field_value(registrationForm.agreeTerms) }}" placeholder="{{ field_label(registrationForm.agreeTerms) }}">
-                        Accpeter les conditions générales
+                        Accepter les conditions générales.
 					</label>
+					
 				</div>
+				<a href={{path('app_rgpd')}} >Mentions légales et CGV</a>
 						
 
 
@@ -44,6 +46,8 @@
 
 				{{ form_end(registrationForm) }}
 			</form>
+
+
 		</section>
 
 	{% endblock %}

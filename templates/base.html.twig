@@ -27,9 +27,9 @@
 		<link rel="stylesheet" href={{asset('style.css')}}>
 	{% endblock %}
 
-     {% block stylesheetsVisibility %}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-     {% endblock %}
+	{% block stylesheetsVisibility %}
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+	{% endblock %}
 
 
 	{% block javascripts %}
@@ -51,12 +51,12 @@
 
 			<!-- NAVBAR BEGIN -->
 
-			<div
-				class="logo-nav">
-				<!-- <a href="home.php" class="logo"> -->
-				<img src="{{asset('./images/logo/LogoChukoManga.png')}}">
-				<span>CHUKO MANGA</span>
-				<!-- </a> -->
+			<div class="logo-nav">
+				<a href={{path('app_home')}} class="logo">
+
+					<img src={{asset('./images/logo/LogoChukoManga.png')}}></a>
+				<span class"brand_name">CHUKO MANGA</span>
+
 			</div>
 
 
@@ -64,8 +64,8 @@
 
 				<a href={{path('app_login')}}>Se Connecter</a>
 				<a href={{path('app_register')}}>S'inscrire</a>
-				<a href="#">Vendre</a>
-                <a href={{path('app_contact')}}>Contact</a>
+				<a href={{path('app_post')}}>Vendre</a>
+				<a href={{path('app_contact')}}>Contact</a>
 
 
 			</nav>
@@ -84,17 +84,17 @@
 			<div class="profile">
 
 				<p>LOGIN/INSCRIPTION</p>
-				<a href="update_user.php" class="btn">Update Profile.</a>
+				<a href={{path('app_forgot_password_request')}} class="btn">Update Profile.</a>
 				<div class="flex-btn">
-					<a href="{{path('app_register')}}" class="option-btn">Register.</a>
-					<a href="{{path('app_login')}}" class="option-btn">Login.</a>
+					<a href={{path('app_register')}} class="option-btn">Register.</a>
+					<a href={{path('app_login')}} class="option-btn">Login.</a>
 				</div>
 				<a href="components/user_logout.php" class="delete-btn">logout</a>
 
 				<p>Please Login Or Register First to proceed !</p>
 				<div class="flex-btn">
-					<a href="{{path('app_register')}}" class="option-btn">Register</a>
-					<a href="{{path('app_login')}}" class="option-btn">Login</a>
+					<a href={{path('app_register')}} class="option-btn">Register</a>
+					<a href={{path('app_login')}} class="option-btn">Login</a>
 				</div>
 
 
@@ -115,17 +115,20 @@
 
 			<div class="box">
 				<h3>Quick links</h3>
-				<a href="{{path('app_home')}}">
+				<a href={{path('app_home')}}>
 					<i class="fas fa-angle-right"></i>
 					Home</a>
-              <a href="">
+				<a href="#">
+
 
 					<i class="fas fa-angle-right"></i>
 					About</a>
-				<a href="shop.php">
+				<a href={{path('app_all_post')}}>
+
 					<i class="fas fa-angle-right"></i>
-					Categories</a>
-            <a href="{{path('app_contact')}}">
+					Nos annonces</a>
+				<a href={{path('app_contact')}}>
+
 
 					<i class="fas fa-angle-right"></i>
 					Contact</a>
@@ -133,31 +136,34 @@
 
 			<div class="box">
 				<h3>Extra links</h3>
-				<a href="{{path('app_login')}}">
+				<a href={{path('app_login')}}>
 					<i class="fas fa-angle-right"></i>
 					Login</a>
-             <a href="{{path('app_register')}}">
+				<a href={{path('app_register')}}>
+
 
 					<i class="fas fa-angle-right"></i>
 					Register</a>
-				<a href="cart.php">
+				<a href={{path('app_home')}}>
+
 					<i class="fas fa-angle-right"></i>
 					Cart</a>
-				<a href="orders.php">
+				<a href={{path('app_post')}}>
+
 					<i class="fas fa-angle-right"></i>
 					Orders</a>
 			</div>
 
 			<div class="box">
 				<h3>Contact Us.</h3>
-				<a href="tel:9800000000">
+				<a href="#">
 					<i class="fas fa-phone"></i>
 					+977 980 000 0000</a>
 
-				<a href="mailto:harshchy143@gmail.com">
+				<a href="mailto:chuko_manga@gmail.com">
 					<i class="fas fa-envelope"></i>
-					testemail@gmail.com</a>
-				<a href="https://www.google.com/myplace">
+					chuko_manga@gmail.com</a>
+				<a href="#">
 					<i class="fas fa-map-marker-alt"></i>
 					Saint Etienne, France
 				</a>
@@ -165,20 +171,20 @@
 
 			<div class="box">
 				<h3>Follow Us</h3>
-				<a href="https://www.facebook.com/harshchaudharynp" target="_blank">
+				<a href="#" target="_blank">
 					<i class="fab fa-facebook-f"></i>facebook</a>
-				<a href="https://twitter.com/HarshCh53587355" target="_blank">
+				<a href="#" target="_blank">
 					<i class="fab fa-twitter"></i>Twitter</a>
-				<a href="https://www.instagram.com/harshchy__/" target="_blank">
+				<a href="#" target="_blank">
 					<i class="fab fa-instagram"></i>Instagram</a>
-				<a href="https://www.linkedin.com/in/harsh-chaudhary-15763a150/" target="_blank">
+				<a href="#" target="_blank">
 					<i class="fab fa-linkedin"></i>Linkedin</a>
 			</div>
 
 		</section>
 
 		<div class="credit">&copy; copyright @
-								         2024 by
+											         2024 by
 			<span>AKNL</span>
 			| all rights reserved!
 		</div>
@@ -189,9 +195,7 @@
 
 	{# // <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> #}
 
-{% block CarouselJavascript %}{% endblock %}
+	{% block CarouselJavascript %}{% endblock %}
 
 
-
-</body>
-</html>
+</body></html>
