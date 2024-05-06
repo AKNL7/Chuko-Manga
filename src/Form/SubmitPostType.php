@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,6 +27,7 @@ class SubmitPostType extends AbstractType
             ])
             ->add('postEdition')
             ->add('postCondition', ChoiceType::class, [
+            
                 'choices' => [
                     'Neuf' => 'Neuf',
                     'Comme Neuf' => 'Comme Neuf',
@@ -40,30 +42,31 @@ class SubmitPostType extends AbstractType
              
                 'label' => false,
                'multiple' => true,
-               'mapped' => false,
+                'mapped' => false,
             ])
           
             
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
+            // ->add('createdAt', null, [
+            //     'widget' => 'single_text',
+            // ])
             ->add('postPrice')
             // ->add('isValid')
-            ->add('postCategory', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name',
-            ])
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'id',
-            ]);
+            // ->add('postCategory', EntityType::class, [
+            //     'class' => Category::class,
+            //     'choice_label' => 'name',
+            // ])
+            // ->add('user', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'id',
+            // ]);
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
-            'postImages'=> Files::class,    
+         
         
         ]);
     }
