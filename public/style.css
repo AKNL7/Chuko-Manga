@@ -658,6 +658,17 @@ section {
   max-width: 50rem;
 }
 
+.form-post {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: var(--border);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
 .form-container form h3 {
   font-size: 2.5rem;
   text-transform: uppercase;

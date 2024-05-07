@@ -47,6 +47,13 @@ class Post
     #[ORM\OneToMany(targetEntity: Files::class, mappedBy: 'post')]
     private Collection $postImages;
 
+    #[ORM\Column(length: 1000)]
+    private ?string $postResume = null;
+
+
+
+
+
     public function __construct()
     {
         $this->postImages = new ArrayCollection();
@@ -184,4 +191,20 @@ class Post
 
         return $this;
     }
+
+    public function getPostResume(): ?string
+    {
+        return $this->postResume;
+    }
+
+    public function setPostResume(string $postResume): static
+    {
+        $this->postResume = $postResume;
+
+        return $this;
+    }
+
+
+
+
 }

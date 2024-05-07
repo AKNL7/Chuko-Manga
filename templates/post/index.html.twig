@@ -1,52 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Hello PostController!
+{% endblock %}
 
 {% block body %}
 
-<section class="form-container">
+	<section class="form-container">
 
 
+		<div class="form-post">
+
+			<h3>POSTER VOTRE ANNONCE</h3>
+      
+			{{ form_start(form) }}
+
+			{{ form_errors(form) }}
 
 
-  <h3>POSTER VOTRE ANNONCE</h3>
-{{ form_start(form) }}
+			<input name="{{ field_name(form.postTitle) }}" value="{{ field_value(form.postTitle) }}" placeholder="{{ field_label(form.postTitle) }}" class="box">
 
-{{ form_errors(form) }}
-
-
-<input name="{{ field_name(form.postTitle) }}" value="{{ field_value(form.postTitle) }}" placeholder="{{ field_label(form.postTitle) }}" class="box">
-
-<input name="{{ field_name(form.postEdition) }}" value="{{ field_value(form.postEdition) }}" placeholder="{{ field_label(form.postEdition) }}" class="box">
+			<input name="{{ field_name(form.postEdition) }}" value="{{ field_value(form.postEdition) }}" placeholder="{{ field_label(form.postEdition) }}" class="box">
 
 
+			{{form_row(form.postCondition)}}
+
+			{{form_row(form.postImages)}}
+
+			{# <div class="box">
+			{{form_row(form.postResume)}}
+			</div> #}
+
+			<textarea name="{{ field_name(form.postResume) }}" value="{{ field_value(form.postResume) }}" placeholder="{{ field_label(form.postResume) }}" class="box"></textarea>
 
 
-
-<div class="box-container">
-
-{{form_row(form.postCondition)}}
-
-{{form_row(form.postImages)}}
-
-</div>
-
-<input name="{{ field_name(form.postPrice) }}" value="{{ field_value(form.postPrice) }}" placeholder="{{ field_label(form.postPrice) }}" class="box">
+			<input name="{{ field_name(form.postPrice) }}" value="{{ field_value(form.postPrice) }}" placeholder="{{ field_label(form.postPrice) }}" class="box">
 
 
+			{{ form_end(form) }}
 
-
-
-
-
-
-
-{{ form_end(form) }}
-</form>
-</section>
-
-
-
+		</div>
+	</section>
 
 
 {% endblock %}

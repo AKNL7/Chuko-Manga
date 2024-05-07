@@ -17,7 +17,13 @@
 
 				<h3>Envoyer votre message</h3>
 
+				{# Mesage afficher lors de l'envoi du formulaire  #}
+				{% for message in app.flashes('send') %}
+					<div class="alert alert-sucess">
+						{{ message}}
+					</div>
 
+				{% endfor %}
 				<input
 				type="email" name="{{ field_name(contactForm.email) }}" value="{{ field_value(contactForm.email) }}" placeholder="{{ field_label(contactForm.email) }}" class="box">
 
