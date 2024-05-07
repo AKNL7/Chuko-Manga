@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+        $user->setRoles(["ROLE_USER"]);
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_verify');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -77,6 +77,13 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre adresse email a été verifiée.');
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_my_space');
+    }
+
+    #[Route('/vzrify', name: 'app_verify')]
+    public function verify(): Response
+    {
+        return $this->render('registration/verify.html.twig');
     }
 }
+

@@ -32,6 +32,7 @@ class RegistrationFormType extends AbstractType
                     new IsTrue([
                         'message' => 'Vous devez accepter les termes et conditions.',
                     ]),
+                    
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [

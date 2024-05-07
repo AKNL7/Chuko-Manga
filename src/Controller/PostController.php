@@ -17,7 +17,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PostController extends AbstractController
 {
-    #[Route('/post', name: 'app_post')]
+    #[Route('/profile/post', name: 'app_post')]
     public function index(EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger): Response
     {
 
