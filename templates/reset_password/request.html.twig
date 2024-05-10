@@ -8,21 +8,26 @@
 
 <section class="form-container">
 
-<form>
+{# <form> #}
 
 
     {% for flash_error in app.flashes('reset_password_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
+
+
+    {{ form_start(requestForm) }}
+
 <h1>Réinitialisez votre mot de passe</h1>
 
 
 
 
-    {{ form_start(requestForm) }}
+
 
 <div class="box-container">
-<input type="email" name="{{ field_name(requestForm.email) }}" value="{{ field_value(requestForm.email) }}" placeholder="Email" class="box">
+
+<input  name="{{ field_name(requestForm.email) }}" value="{{ field_value(requestForm.email) }}" placeholder="Email" class="box">
 
         {# {{ form_row(requestForm.email) }} #}
         <div>
@@ -38,7 +43,7 @@
     {{ form_end(requestForm) }}
 <div>
 
-</form>
+{# </form> #}
 </section>
 
 {% endblock %}

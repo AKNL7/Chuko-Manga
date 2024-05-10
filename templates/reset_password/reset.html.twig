@@ -5,32 +5,40 @@
 
 
 {% block body %}
-<h1>Réinitialisez votre mot de passe</h1>
 
 
-    {# {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }} #}
+
+ 
+    
 
 <section class="form-container">
+   {{ form_start(resetForm) }}
 
-	<form action="" method="post">
+	{# <form action="" method="post"> #}
 		<h3>Modifier mon mot de passe</h3>
 
 		<input type="hidden" name="prev_pass" value="previous-password">
 
-		<input type="text" name="name" required placeholder="enter your username" maxlength="20" class="box" value="username">
-		
-        <input type="email" name="email" required placeholder=" email" maxlength="50" class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="email">
-		
-        <input type="password" name="old_pass" placeholder="enter your old password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-		
-        <input type="password" name="new_pass" placeholder="enter your new password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-		<input type="password" name="cpass" placeholder="confirm your new password" maxlength="20" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-		<input type="submit" value="Modifier" class="btn" name="submit">
-	</form>
 
+        {{ form_row(resetForm.plainPassword) }}
+
+{# <div class="eye">
+<div class="password-icon">
+	<span class="material-symbols-outlined-eye-off">visibility_off</span>
+	
+	<span class="material-symbols-outlined-eye-on">visibility</span>
+	<span class="displayEye"> afficher le mot de passe</span>
+<span class="displayEye">
+	cacher le mot de passe</span>
+
+</div>
+</div> #}
+
+        <button class="btn btn-primary">Reset password</button>
+		
+	
+	{# </form> #}
+{{ form_end(resetForm) }}
 </section>
 
 

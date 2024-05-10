@@ -80,10 +80,10 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_my_space');
     }
 
-    #[Route('/vzrify', name: 'app_verify')]
+    #[Route('/verify', name: 'app_verify')]
     public function verify(): Response
     {
-        return $this->render('registration/verify.html.twig');
+        return $this->render('security/verify.html.twig');
     }
 }
 

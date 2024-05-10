@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class ContactController extends AbstractController
 {
     #[Route('/profile/contact', name: 'app_contact')]
-    public function index(Request $request, MailerInterface $mailer): Response
+    public function index(Request $request, MailerInterface $mailer, EntityManagerInterface $entityManager): Response
     {
         //on recupere les données du User
         $userFirstName = ucfirst($this->getUser()->getFirstName()); 
@@ -34,7 +35,7 @@ class ContactController extends AbstractController
           $this->addFlash("send", "Vote message à bien été envoyé");
         $data=$contactForm->getData();
         $message = $data['message']; 
-        $mailer->send((new TemplatedEmail())
+        $email->send((new TemplatedEmail())
        ->from($adminEmail)
        ->to($adminEmail)
        ->replyTo($userEmail)
@@ -46,7 +47,8 @@ class ContactController extends AbstractController
         "lastName" => $userLastName,
         "userEmail" => $userEmail,
      ])
-  );
+    );
+    $mailer->send($email);
       }
       
         // Render the index template with the contact form
