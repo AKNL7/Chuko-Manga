@@ -9,8 +9,10 @@
 	<h1 class="heading">Toutes les annonces</h1>
 
 	<!-- CARD POST BEGIN -->
-	<div class="box-container">
 
+
+	<div class="box-container">
+{% for post in posts %}
 
 		<form action="" method="post" class="box">
 			<input type="hidden" name="pid" value="product_id">
@@ -21,22 +23,26 @@
 
 			<!-- Wishlist link delete -->
 			<a href="quickView->product_id" class="fas fa-eye"></a>
-			<img src="{{asset('./images/post/bakitome1.jpg')}}" alt="">
+			<img src="" alt="">
 			<div class="name"></div>
 			<div class="name">
-				Titre de l'annonce
+{{ post.postTitle }}
+
 			</div>
 			<div class="flex">
 
 				<div class="price">
-					<span>1O</span>
+<span>{{ post.postPrice }}</span>
+
 					<span>€</span>
 				</div>
 
 			</div>
 			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
 		</form>
+			{% endfor %}
 	</div>
+
 	<!-- CARD POST END -->
 
 	<!-- <p class="empty">no products found!</p  -->

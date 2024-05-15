@@ -3,7 +3,8 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
-use Doctrine\ORM\EntityManager;
+
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Attribute\Route;
+
 
 class ContactController extends AbstractController
 {
@@ -35,7 +37,7 @@ class ContactController extends AbstractController
           $this->addFlash("send", "Vote message à bien été envoyé");
         $data=$contactForm->getData();
         $message = $data['message']; 
-        $email->send((new TemplatedEmail())
+        $email = $mailer->send((new TemplatedEmail())
        ->from($adminEmail)
        ->to($adminEmail)
        ->replyTo($userEmail)

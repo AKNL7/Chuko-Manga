@@ -14,6 +14,8 @@
 		{# <div class="category_title heading">Post title</div> #}
 		</div>
 		<!-- DEBUT FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
+
+
 		<form action="" method="post" class="box">
 			<input type="hidden" name="pid" value="">
 			<input type="hidden" name="name" value="">
@@ -32,7 +34,7 @@
 				</div>
 				<div class="content">
 					<div class="name">
-						Titre de l'annonce
+						{# {{postTitle}} #}
 					</div>
 					<div class="flex">
 						<div class="price">
@@ -73,6 +75,8 @@
 				</div>
 			</div>
 		</form>
+
+
 
 		<!-- FIN FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
 
