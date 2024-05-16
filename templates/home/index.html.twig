@@ -107,9 +107,9 @@
 				</a>
 
 				<!-- <a href="category.php?category=washing" class="swiper-slide slide">
-																																																						                    <img src="images/icon-6.png" alt="">
-																																																						                    <h3>Washing machine</h3>
-																																																						                </a> -->
+																																																																														                    <img src="images/icon-6.png" alt="">
+																																																																														                    <h3>Washing machine</h3>
+																																																																														                </a> -->
 
 
 			</div>
@@ -128,28 +128,28 @@
 		<h1 class="heading">Les Derniéres Annonces</h1>
 
 		<!-- SLIDER RECENT POST BEGIN -->
-		{% for post in posts %}
+{% for post in latestPosts %}
 
-			<div class="swiper products-slider">
+		<div class="swiper products-slider">
 
-				<div class="swiper-wrapper">
-
+			<div class="swiper-wrapper">
+				
 
 					<form action="" method="post" class="swiper-slide slide">
 
 
 						{# 
-												<input type="hidden" name="pid" value="">
-												<input type="hidden" name="name" value="">
-												<input type="hidden" name="price" value="">
-												<input
-												type="hidden" name="image" value="">  #}
+																																																<input type="hidden" name="pid" value="">
+																																																<input type="hidden" name="name" value="">
+																																																<input type="hidden" name="price" value="">
+																																																<input
+																																																type="hidden" name="image" value="">  #}
 
 
 						{# <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> #}<a href={{path('app_quick_view')}} class="fas fa-eye"> </a>
 
 						{% for file in post.postImages %}
-						 <p>Hello</p>
+							<p>Hello</p>
 
 							<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
 
@@ -174,11 +174,11 @@
 
 
 						</div>
+					
+					<div class="swiper-pagination"></div>
 
-						<div class="swiper-pagination"></div>
-
-					</div>
-				{% endfor %}
+				</div>
+{% endfor %}
 				<!-- SLIDER RECENT POST END -->
 			</section>
 
@@ -187,38 +187,49 @@
 			<section class="home-products">
 
 				<h1 class="heading">Les Meilleurs Prix</h1>
+			
+					<!-- SLIDER POST BEGIN -->
 
-				<!-- SLIDER POST BEGIN -->
-				<div class="swiper products-slider">
-
-					<div class="swiper-wrapper">
-
-
-						<form action="" method="post" class="swiper-slide slide">
-							<input type="hidden" name="pid" value="">
-							<input type="hidden" name="name" value="">
-							<input type="hidden" name="price" value="">
-							<input
-							type="hidden" name="image" value="">
-							{# <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> #}
-							<a href={{path('app_quick_view')}} class="fas fa-eye"></a>
-							<img src="" alt="">
-							<div class="name">
-								Titre de l'annonce
-							</div>
-							<div class="flex">
-								<div class="price">
-									<span>PRIX</span>
-									<span>€</span>
-
-									<!-- NUMER QUANTITY INPUT DELETE -->
+						{% for post in bestPricedPosts  %}
+					<div class="swiper products-slider">
 
 
-									<input type="submit" value="ajouter au panier" class="btn" name="add_to_cart">
-								</form>
+						<div class="swiper-wrapper">
 
-								<!-- <p class="empty">no products added yet!</p>'; -->
+							<form action="" method="post" class="swiper-slide slide">
+								<input type="hidden" name="pid" value="">
+								<input type="hidden" name="name" value="">
+								<input type="hidden" name="price" value="">
+								<input
+								type="hidden" name="image" value="">
+								{# <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> #}
 
+								<a href={{path('app_quick_view')}} class="fas fa-eye"></a>
+
+								{% for file in post.postImages %}
+									<p>Hello</p>
+
+									<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+								{% endfor %}
+
+
+								<div class="name">
+									Titre de l'annonce
+								</div>
+								<div class="flex">
+									<div class="price">
+										<span>PRIX</span>
+										<span>€</span>
+
+										<!-- NUMER QUANTITY INPUT DELETE -->
+
+
+										<input type="submit" value="ajouter au panier" class="btn" name="add_to_cart">
+									</form>
+
+									<!-- <p class="empty">no products added yet!</p>'; -->
+							
 
 							</div>
 
@@ -226,7 +237,7 @@
 
 						</div>
 						<!-- SLIDER POST END -->
-
+	{% endfor %}
 					</section>
 
 

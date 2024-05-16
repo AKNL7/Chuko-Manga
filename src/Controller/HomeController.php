@@ -13,13 +13,16 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(PostRepository $postRepository, FilesRepository $filesRepository): Response
     {
-         $posts = $postRepository->findAll();
+        $latestPosts = $postRepository->findLatestPosts();
+        $bestPricedPosts = $postRepository->findBestPricedPosts();
          
         
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
-            'posts' => $posts,
+            'latestPosts' => $latestPosts,
+            'bestPricedPosts' => $bestPricedPosts,
+            
           
         ]);
     }

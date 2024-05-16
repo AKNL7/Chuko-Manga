@@ -12,8 +12,8 @@
 
 
 	<div class="box-container">
-{% for post in posts %}
 
+{% for post in posts %} 
 		<form action="" method="post" class="box">
 			<input type="hidden" name="pid" value="product_id">
 			<input type="hidden" name="name" value="product_name">
@@ -22,8 +22,12 @@
 			type="hidden" name="image" value="product_image">
 
 			<!-- Wishlist link delete -->
-			<a href="quickView->product_id" class="fas fa-eye"></a>
-			<img src="" alt="">
+			{# <a href="quickView->product_id" class="fas fa-eye"></a> #}
+{% for file in post.postImages %}
+
+<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+{% endfor %}
 			<div class="name"></div>
 			<div class="name">
 {{ post.postTitle }}
