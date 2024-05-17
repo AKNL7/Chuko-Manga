@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\ContactType;
 
 
@@ -17,11 +18,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class ContactController extends AbstractController
 {
     #[Route('/profile/contact', name: 'app_contact')]
-    public function index(Request $request, MailerInterface $mailer, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, MailerInterface $mailer, EntityManagerInterface $entityManager, User $user): Response
     {
-        //on recupere les données du User
-        $userFirstName = ucfirst($this->getUser()->getFirstName()); 
-        $userLastName = ucfirst($this->getUser()->getLastName());
+    //on recupere les données du User
+    $userEmail = new User();
         $userEmail = ucfirst($this->getUser()->getEmail());
 
         $adminEmail = $_ENV['ADMIN_EMAIL'];
@@ -45,8 +45,7 @@ class ContactController extends AbstractController
        ->htmlTemplate('contact/email.html.twig')
        ->context([
         "message" => $message,
-        "firstName" => $userFirstName,
-        "lastName" => $userLastName,
+    
         "userEmail" => $userEmail,
      ])
     );

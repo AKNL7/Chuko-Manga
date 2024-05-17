@@ -22,7 +22,8 @@
 			type="hidden" name="image" value="product_image">
 
 			<!-- Wishlist link delete -->
-			{# <a href="quickView->product_id" class="fas fa-eye"></a> #}
+<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
+
 {% for file in post.postImages %}
 
 <img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">

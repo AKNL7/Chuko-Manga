@@ -23,6 +23,7 @@ class HomeController extends AbstractController
             'latestPosts' => $latestPosts,
             'bestPricedPosts' => $bestPricedPosts,
             
+            
           
         ]);
     }

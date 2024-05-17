@@ -24,7 +24,16 @@
 			<div class="row">
 				<div class="image-container">
 					<div class="main-image">
-						<img src="./Assets/images/9782344048078-001-T.jpeg" alt="">
+
+{% for file in post.postImages %}
+
+
+<img src="{{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+{% endfor %}
+
+
+
 					</div>
 					<div class="sub-image">
 						<img src="" alt="">
@@ -34,30 +43,41 @@
 				</div>
 				<div class="content">
 					<div class="name">
-						{# {{postTitle}} #}
+						{{post.postTitle}}
 					</div>
 					<div class="flex">
 						<div class="price">
-							<span>Prix
+							<span>{{post.postPrice}}
 							</span>
 							<span>€</span>
 						</div>
 
 					</div>
 					<div class="details">
-						description
+						
 						<div class="product_state">
 							<span>Etat :
 							</span>
-							<span>Neuf</span>
+							<span>{{ post.postCondition}}</span>
 						</div>
 						<div class="product_edition">
 							<span>Edition :
 							</span>
-							<span>Kana</span>
+							<span>{{post.postEdition}}</span>
 						</div>
 						<div class="product_seller">
-							Vendeur : Nom Vendeur
+Vendeur :
+{# {{ user.firstName }} #}
+{# {{ user.lastName }} #}
+
+
+	<p>Posted by:
+	
+		
+		</p>
+
+
+
 
 						</div>
 					</div>
@@ -67,8 +87,7 @@
 
 					<div class="product_resume">
 						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quaerat.
-																				                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, porro.
+{{post.postResume}}
 						</p>
 					</div>
 
