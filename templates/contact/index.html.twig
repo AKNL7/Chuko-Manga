@@ -4,40 +4,30 @@
 {% endblock %}
 
 {% block body %}
-
 	<section class="contact">
 		<div class="banner">
-			<img src="{{asset('./images/banner/bannerChuko4.png')}}" alt="Banner Image">
-			<div class="category_title">Contact
-			</div>
+			<img src="{{ asset('./images/banner/bannerChuko4.png') }}" alt="Banner Image">
+			<div class="category_title">Contact</div>
 		</div>
 		<div class="contact-form-container">
+			<h3>Envoyer votre message</h3>
+			{{ form_start(contactForm) }}
 
-			<form action="" method="post">
+			{# Display success flash message #}
+			{% for message in app.flashes('send') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
 
-				<h3>Envoyer votre message</h3>
+			{{ form_row(contactForm.email, {'attr': {'class': 'box', 'placeholder': 'Email'}}) }}
 
-				{# Mesage afficher lors de l'envoi du formulaire  #}
-				{% for message in app.flashes('send') %}
-					<div class="alert alert-sucess">
-						{{ message}}
-					</div>
+			{{ form_row(contactForm.message, {'attr': {'class': 'box', 'placeholder': 'Message'}}) }}
 
-				{% endfor %}
-				<input
-				 name="{{ field_name(contactForm.email) }}" value="{{ field_value(contactForm.email) }}" placeholder="{{ field_label(contactForm.email) }}" class="box">
+			<input type="submit" value="Send message" class="btn">
 
-
-				{# <input type="number" name="number" min="0" max="9999999999" placeholder="Number" required onkeypress="if(this.value.length == 10) return false;" class="box"> #}
-
-				<textarea name="{{ field_name(contactForm.message) }}" value="{{ field_value(contactForm.message) }}" placeholder="{{ field_label(contactForm.message) }}" class="box"></textarea>
-
-
-				<input type="submit" value="send message" name="send" class="btn">
-
-			</form>
+			{{ form_end(contactForm) }}
 		</div>
 	</section>
-
-
 {% endblock %}
+

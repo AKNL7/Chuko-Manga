@@ -5,47 +5,52 @@ namespace App\Controller;
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class BuyController extends AbstractController
 {
-    #[Route('/buy', name: 'app_buy')]
-    public function index(PostRepository $postRepository, Post $post ): Response
+          private $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
-        $post = new Post();
-        $posts = $postRepository->findAll();
+        $this->urlGenerator = $urlGenerator;
+    }
 
-require_once '../vendor/autoload.php';
+    #[Route('/buy/{id}', name: 'app_buy')]
+    public function index(PostRepository $postRepository, Post $post, int $id): Response
+    {
 
-$stripeSecretKeyDev = $_ENV['STRIPE_SECRET_KEY_DEV'];
 
-\Stripe\Stripe::setApiKey($stripeSecretKeyDev);
-header('Content-Type: application/json');
+        // Retrieve the post by its id
+        $post = $postRepository->find($id);
 
-$YOUR_DOMAIN = 'http://127.0.0.1:8000/';
+        if (!$post) {
+            throw $this->createNotFoundException('The post does not exist');
+        }
 
-$checkout_session = \Stripe\Checkout\Session::create([
-  'line_items' => [[
-    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-    'price_data' => [
-        'currency' => 'eur',
-        'name' => $post->getPostTitle(),
-        'unit_amount' => $post->getPostPrice(),
-        'post' => $post->getId(),
-    ],
-    'quantity' => 1,
-  ]],
-  'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/success.html',
-  'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
-]);
+        // Initialize Stripe
+        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY_DEV']);
 
-header("HTTP/1.1 303 See Other");
-header("Location: " . $checkout_session->url);
-
-        return $this->render('buy/index.html.twig', [
-            'controller_name' => 'BuyController',
+        // Create a new Stripe Checkout Session
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $post->getPostTitle(),
+                    ],
+                    'unit_amount' => $post->getPostPrice() * 100, // Stripe expects the amount in cents
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('app_success', [], UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('app_cancel', [], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
+
+        return $this->redirect($checkout_session->url);
     }
 }
