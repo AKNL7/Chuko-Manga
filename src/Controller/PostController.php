@@ -34,6 +34,8 @@ class PostController extends AbstractController
     // Check if the form is submitted and valid
     if ($form->isSubmitted() && $form->isValid()) {
 
+      $post->setValid(false);
+
 
       $uploadFiles = $form->get('postImages')->getData();
 
@@ -58,7 +60,7 @@ class PostController extends AbstractController
 
 
 
-
+$post->setValid(false);
         $entityManager->persist($newfile);
         $entityManager->persist($post);
         $entityManager->flush();
@@ -72,4 +74,9 @@ class PostController extends AbstractController
       'files' => $post->getPostImages(),
     ]);
   }
+
+
+
+
+  
 }

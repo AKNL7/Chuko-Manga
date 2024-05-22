@@ -15,13 +15,14 @@ class HomeController extends AbstractController
     {
         $latestPosts = $postRepository->findLatestPosts();
         $bestPricedPosts = $postRepository->findBestPricedPosts();
-         
+        $posts = $postRepository->findBy(['isValid' => 'Approved']);
         
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'latestPosts' => $latestPosts,
             'bestPricedPosts' => $bestPricedPosts,
+            'posts' => $posts
             
             
           
