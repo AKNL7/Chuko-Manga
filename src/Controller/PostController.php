@@ -9,14 +9,24 @@ use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security as SecurityBundleSecurity;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PostController extends AbstractController
 {
+  private $security;
+
+  public function __construct(SecurityBundleSecurity $security)
+  {
+    $this->security = $security;
+  }
+
   #[Route('/profile/post', name: 'app_post')]
   public function index(EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger): Response
   {
@@ -36,6 +46,8 @@ class PostController extends AbstractController
 
       $post->setValid(false);
 
+      $user = $this->security->getUser();
+      $post->setUser($user);
 
       $uploadFiles = $form->get('postImages')->getData();
 

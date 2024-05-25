@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    Post:
+      class: App\Entity\Post
+      list:
+        fields:
+          - 'id'
+          - 'postTitle'
+          - 'postEdition'
+          - 'postCondition'
+          - 'postResume'
+          - 'postPrice'
+          - 'isValid'
+          - 'user'
+          - 'postCategory'
+          - property: 'postImages'
+            template: 'admin/images.html.twig' # Spécifiez le modèle pour afficher les images

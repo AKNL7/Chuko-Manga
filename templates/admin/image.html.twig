@@ -1,0 +1,27 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{# {% set images = field.formattedValue %}
+{% if images is not iterable %}
+    {% set images = [images] %}
+{% endif %} #}
+
+
+
+{% set files = field.value %}
+{% if files is not iterable %}
+	{% set files = [files] %}
+{% endif %}
+{% for file in files %}
+<img src="{{ asset('uploads/' ~ file.postImage) | imagine_filter('my_thumb') }}" alt="postimage">
+
+{% endfor %}
+
+
+
+
+
+
+
+
+

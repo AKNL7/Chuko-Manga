@@ -22,7 +22,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'latestPosts' => $latestPosts,
             'bestPricedPosts' => $bestPricedPosts,
-            'posts' => $posts
+            // 'posts' => $posts
             
             
           

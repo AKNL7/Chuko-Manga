@@ -13,7 +13,8 @@
 
 	<div class="box-container">
 
-{% for post in posts %} 
+{% for approvedPost in approvedPosts %}
+
 		<form action="" method="post" class="box">
 			<input type="hidden" name="pid" value="product_id">
 			<input type="hidden" name="name" value="product_name">
@@ -31,13 +32,14 @@
 {% endfor %}
 			<div class="name"></div>
 			<div class="name">
-{{ post.postTitle }}
+{{ approvedPost.postTitle }}
+
 
 			</div>
 			<div class="flex">
 
 				<div class="price">
-<span>{{ post.postPrice }}</span>
+<span>{{ approvedPost.postPrice }}</span>
 
 					<span>€</span>
 				</div>

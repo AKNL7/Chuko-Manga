@@ -37,4 +37,13 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findisValidPost(): ?array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.isValid', 'ASC')
+            // ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }
