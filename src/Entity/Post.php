@@ -44,7 +44,7 @@ class Post
     /**
      * @var Collection<int, Files>
      */
-    #[ORM\OneToMany(targetEntity: Files::class, mappedBy: 'post')]
+    #[ORM\OneToMany(targetEntity: Files::class, mappedBy: 'post', cascade: ['remove'], orphanRemoval: true)]
     private Collection $postImages;
 
     #[ORM\Column(length: 1000)]

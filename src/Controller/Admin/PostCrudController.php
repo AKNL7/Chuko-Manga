@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -20,13 +21,23 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Configurator\ImageConfigurator;
-
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class PostCrudController extends AbstractCrudController
 {
+
+    private AdminUrlGenerator $adminUrlGenerator;
+
+    public function __construct(AdminUrlGenerator $adminUrlGenerator)
+    {
+        $this->adminUrlGenerator = $adminUrlGenerator;
+    }
+
     public static function getEntityFqcn(): string
     {
         return Post::class;
@@ -64,35 +75,52 @@ class PostCrudController extends AbstractCrudController
 
         ];
     }
+         
+
+
+
 
     public function configureActions(Actions $actions): Actions
     {
+        $approvePost = Action::new('approvePost', 'Approve', 'fa fa-check')
+        ->linkToCrudAction('approvePost')
+        ->addCssClass('btn btn-success');
+
+        $rejectPost = Action::new('rejectPost', 'Reject', 'fa fa-ban')
+        ->linkToCrudAction('rejectPost')
+        ->addCssClass('btn btn-danger');
+
         return $actions
-        
-            ->addBatchAction(Action::new('approve', 'Approve Post')
-                ->linkToCrudAction('approvePost')
-                ->addCssClass('btn btn-primary')
-                ->setIcon('fa fa-user-check'));
-
-            // ->addBatchAction(Action::new('reject', 'Reject Post')
-            //     ->linkToCrudAction('rejectPost')
-            //     ->addCssClass('btn btn-danger')
-            //     ->setIcon('fa fa-user-times'));
+            ->add(Crud::PAGE_INDEX, $approvePost)
+            ->add(Crud::PAGE_INDEX, $rejectPost);
     }
-    public function approvePost(BatchActionDto $batchActionDto)
-    {
-        $className = $batchActionDto->getEntityFqcn();
-        $entityManager = $this->container->get('doctrine')->getManagerForClass($className);
-        foreach ($batchActionDto->getEntityIds() as $id) {
-            $user = $entityManager->find($className, $id);
-            $user->approve();
-        }
 
+    public function approvePost(AdminContext $context, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        /** @var Post $post */
+        $post = $context->getEntity()->getInstance();
+        $post->IsValid(true);
+        $entityManager->persist($post);
         $entityManager->flush();
 
-        return $this->redirect($batchActionDto->getReferrerUrl());
-    }
-   
+        $this->addFlash('success', 'Post approved successfully!');
 
+        $url = $context->getReferrer() ?? $this->adminUrlGenerator->setController(self::class)->setAction(Crud::PAGE_INDEX)->generateUrl();
+        return $this->redirect($url);
+    }
+
+    public function rejectPost(AdminContext $context, EntityManagerInterface $entityManager): RedirectResponse
+    {
+        /** @var Post $post */
+        $post = $context->getEntity()->getInstance();
+        $entityManager->remove($post);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'Post rejected successfully!');
+
+        $url = $context->getReferrer() ?? $this->adminUrlGenerator->setController(self::class)->setAction(Crud::PAGE_INDEX)->generateUrl();
+        return $this->redirect($url);
+    }
+  
     }
 

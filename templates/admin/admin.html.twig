@@ -1,0 +1,17 @@
+
+### Étape 5 : Ajouter le Bouton Toggle dans le Template
+
+Modifiez votre template EasyAdmin pour inclure le bouton toggle et l'attribut `data` requis pour le script JavaScript :
+
+```twig
+{% block body %}
+    {{ parent() }}
+    <script src="{{ asset('path/to/your/javascript/file.js') }}"></script>
+{% endblock %}
+
+{# In your EasyAdmin template where you display the list of posts #}
+<td>
+    <button class="js-toggle-valid" data-post-id="{{ post.id }}" data-new-value="{{ post.isValid ? 0 : 1 }}">
+        {{ post.isValid ? 'Valid' : 'Invalid' }}
+    </button>
+</td>
