@@ -143,7 +143,7 @@ class Post
         return $this->isValid;
     }
 
-    public function setValid(bool $isValid): static
+    public function setIsValid(bool $isValid): static
     {
         $this->isValid = $isValid;
 
@@ -205,6 +205,11 @@ class Post
     }
 
 
+    public function getFormattedPrice(): ?float
+    {
+        // Votre logique pour retourner le prix multiplié par 100
+        return $this->postPrice * 100;
+    }
 
 
 }

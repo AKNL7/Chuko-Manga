@@ -2,7 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Post;
+use App\Repository\CategoryRepository;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -30,12 +33,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PostCrudController extends AbstractCrudController
 {
-
+    private EntityManagerInterface $entityManager;
     private AdminUrlGenerator $adminUrlGenerator;
 
-    public function __construct(AdminUrlGenerator $adminUrlGenerator)
+    public function __construct(AdminUrlGenerator $adminUrlGenerator, CategoryRepository $categoryRepository, EntityManagerInterface $entityManager)
     {
         $this->adminUrlGenerator = $adminUrlGenerator;
+        $this->entityManager = $entityManager;
     }
 
     public static function getEntityFqcn(): string
@@ -45,6 +49,13 @@ class PostCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $categories = $this->entityManager->getRepository(Category::class)->findAll();
+        dump($categories);
+        // Create an array of choices for the AssociationField
+        $choices = [];
+        foreach ($categories as $category) {
+            $choices[$category->getName()] = $category;
+
         return [
             IdField::new('id')->hideOnForm(),
 
@@ -52,7 +63,7 @@ class PostCrudController extends AbstractCrudController
             TextField::new('postEdition'),
             TextField::new('postCondition'),
             TextField::new('postResume'),
-            MoneyField::new('postPrice')->setCurrency('EUR'),
+            MoneyField::new('formattedPrice', 'postPrice')->setCurrency('EUR'),
             BooleanField::new('isValid')->setLabel('Is Valid'),
             AssociationField::new('user', 'User')
                 ->formatValue(function ($value, $entity) {
@@ -63,7 +74,15 @@ class PostCrudController extends AbstractCrudController
                     }
                 })
                 ->hideOnForm(),
-            AssociationField::new('postCategory', 'Category')->autocomplete(),
+            AssociationField::new('postCategory')
+                ->setFormTypeOptions([
+                    'choices' => $choices,
+                    'choice_label' => function ($category) {
+                        return $category->getName();
+                    },
+                    'placeholder' => 'Choose a category' // Optionnel : un libellé de choix par défaut
+                ]),
+        
             DateTimeField::new('createdAt')->hideOnForm(),
             CollectionField::new('postImages', 'Image')
                 ->setTemplatePath('admin\image.html.twig')
@@ -75,6 +94,7 @@ class PostCrudController extends AbstractCrudController
 
         ];
     }
+}
          
 
 
@@ -99,7 +119,7 @@ class PostCrudController extends AbstractCrudController
     {
         /** @var Post $post */
         $post = $context->getEntity()->getInstance();
-        $post->IsValid(true);
+        $post->setIsValid(true);
         $entityManager->persist($post);
         $entityManager->flush();
 
@@ -109,8 +129,9 @@ class PostCrudController extends AbstractCrudController
         return $this->redirect($url);
     }
 
-    public function rejectPost(AdminContext $context, EntityManagerInterface $entityManager): RedirectResponse
+    public function rejectPost(AdminContext $context, EntityManagerInterface $entityManager)
     {
+        try {
         /** @var Post $post */
         $post = $context->getEntity()->getInstance();
         $entityManager->remove($post);
@@ -118,9 +139,21 @@ class PostCrudController extends AbstractCrudController
 
         $this->addFlash('success', 'Post rejected successfully!');
 
-        $url = $context->getReferrer() ?? $this->adminUrlGenerator->setController(self::class)->setAction(Crud::PAGE_INDEX)->generateUrl();
+           } catch (\Exception $e) {
+        $this->addFlash('error', 'An error occurred while rejecting the post.');
+        // Log the error or perform additional error handling if needed
+           }
+$url = $this->container->get(AdminUrlGenerator::class)
+->setController(PostCrudController::class)
+->setAction(Action::INDEX)
+->unset('entityId')
+->generateUrl();
+
         return $this->redirect($url);
+        // $url = $this->adminUrlGenerator->setController(self::class)->setAction(Crud::PAGE_INDEX)->generateUrl();
+        // return $this->redirect($url);
     }
+
   
     }
 

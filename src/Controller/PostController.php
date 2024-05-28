@@ -44,7 +44,7 @@ class PostController extends AbstractController
     // Check if the form is submitted and valid
     if ($form->isSubmitted() && $form->isValid()) {
 
-      $post->setValid(false);
+      
 
       $user = $this->security->getUser();
       $post->setUser($user);
@@ -72,7 +72,7 @@ class PostController extends AbstractController
 
 
 
-$post->setValid(false);
+$post->setIsValid(false);
         $entityManager->persist($newfile);
         $entityManager->persist($post);
         $entityManager->flush();

@@ -13,7 +13,8 @@
 
 	<div class="box-container">
 
-{% for approvedPost in approvedPosts %}
+{% for post in approvedPosts %}
+
 
 		<form action="" method="post" class="box">
 			<input type="hidden" name="pid" value="product_id">
@@ -32,14 +33,14 @@
 {% endfor %}
 			<div class="name"></div>
 			<div class="name">
-{{ approvedPost.postTitle }}
+{{ post.postTitle }}
 
 
 			</div>
 			<div class="flex">
 
 				<div class="price">
-<span>{{ approvedPost.postPrice }}</span>
+<span>{{ post.postPrice }}</span>
 
 					<span>€</span>
 				</div>
@@ -47,8 +48,9 @@
 			</div>
 			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
 		</form>
-			{% endfor %}
-	</div>
+{% endfor %}
+{{dump(approvedPosts)}}	
+</div>
 
 	<!-- CARD POST END -->
 

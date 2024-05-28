@@ -38,11 +38,11 @@ class PostRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findisValidPost(): ?array
+    public function findApprovedPosts(): array
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.isValid', 'ASC')
-            // ->setMaxResults($limit)
+            ->andWhere('p.isValid = :isValid')
+            ->setParameter('isValid', true)
             ->getQuery()
             ->getResult();
     }
