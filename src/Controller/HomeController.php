@@ -13,9 +13,11 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(PostRepository $postRepository, FilesRepository $filesRepository): Response
     {
+        
+     $posts = $postRepository->findBy(['isValid' => 'Approved']);
         $latestPosts = $postRepository->findLatestPosts();
         $bestPricedPosts = $postRepository->findBestPricedPosts();
-        $posts = $postRepository->findBy(['isValid' => 'Approved']);
+       
         
 
         return $this->render('home/index.html.twig', [

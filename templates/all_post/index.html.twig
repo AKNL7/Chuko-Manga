@@ -46,7 +46,10 @@
 				</div>
 
 			</div>
-			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
+<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn">Ajouter au panier</a>
+
+
+
 		</form>
 {% endfor %}
 {{dump(approvedPosts)}}	

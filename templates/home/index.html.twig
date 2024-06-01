@@ -5,6 +5,12 @@
 
 {% block body %}
 
+	{% for message in app.flashes('cancel') %}
+		<div class='alert alert-danger'>
+			{{ message }}
+		</div>
+	{% endfor %}
+
 	<!-- HOME CAROUSEL BEGIN -->
 	<div class="home-bg">
 
@@ -107,9 +113,9 @@
 				</a>
 
 				<!-- <a href="category.php?category=washing" class="swiper-slide slide">
-																																																																																						                    <img src="images/icon-6.png" alt="">
-																																																																																						                    <h3>Washing machine</h3>
-																																																																																						                </a> -->
+																																																																																										                    <img src="images/icon-6.png" alt="">
+																																																																																										                    <h3>Washing machine</h3>
+																																																																																										                </a> -->
 
 
 			</div>
@@ -128,22 +134,23 @@
 		<h1 class="heading">Les Derniéres Annonces</h1>
 
 		<!-- SLIDER RECENT POST BEGIN -->
-		{% for latestPost in latestPosts %}
+	
 
 			<div class="swiper products-slider">
 
 				<div class="swiper-wrapper">
 
+{% for latestPost in latestPosts %}
 
 					<form action="" method="post" class="swiper-slide slide">
 
 
 						{# 
-																																																												<input type="hidden" name="pid" value="">
-																																																												<input type="hidden" name="name" value="">
-																																																												<input type="hidden" name="price" value="">
-																																																												<input
-																																																												type="hidden" name="image" value="">  #}
+																																																																		<input type="hidden" name="pid" value="">
+																																																																		<input type="hidden" name="name" value="">
+																																																																		<input type="hidden" name="price" value="">
+																																																																		<input
+																																																																		type="hidden" name="image" value="">  #}
 
 
 						{# <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> #}<a href={{path('app_quick_view', {'id': latestPost.id} )}} class="fas fa-eye"> </a>
@@ -168,8 +175,9 @@
 								<span>€</span>
 
 								<!-- NUMER QUANTITY INPUT DELETE -->
+								<a href="{{ path('app_cart_add', {'id': latestPost.id}) }}" class="btn">Ajouter au panier</a>
 
-								<input type="submit" value="ajouter au panier" class="btn" name="add_to_cart">
+
 							</form>
 
 
@@ -177,10 +185,10 @@
 
 
 						</div>
-
+	</div>
 						<div class="swiper-pagination"></div>
 
-					</div>
+				
 				{% endfor %}
 				<!-- SLIDER RECENT POST END -->
 			</section>
@@ -193,12 +201,12 @@
 
 				<!-- SLIDER POST BEGIN -->
 
-				{% for bestPricedPost in bestPricedPosts  %}
+				
 					<div class="swiper products-slider">
-
 
 						<div class="swiper-wrapper">
 
+{% for bestPricedPost in bestPricedPosts  %}
 							<form action="" method="post" class="swiper-slide slide">
 								<input type="hidden" name="pid" value="">
 								<input type="hidden" name="name" value="">
@@ -229,29 +237,31 @@
 
 										<!-- NUMER QUANTITY INPUT DELETE -->
 
+										<a href="{{ path('app_cart_add', {'id': bestPricedPost.id}) }}" class="btn">Ajouter au panier</a>
 
-										<input type="submit" value="ajouter au panier" class="btn" name="add_to_cart">
+
+										<!-- <p class="empty">no products added yet!</p>'; -->
+
+
+									</div>
 									</form>
 
-									<!-- <p class="empty">no products added yet!</p>'; -->
+	</div>
+									<div class="swiper-pagination"></div>
 
-
-								</div>
-
-								<div class="swiper-pagination"></div>
-
-							</div>
-							<!-- SLIDER POST END -->
+								
+								
+								<!-- SLIDER POST END -->
 						{% endfor %}
-					</section>
+						</section>
 
 
-					{% block CarouselJavascript %}
+						{% block CarouselJavascript %}
 
-						<!-- SLIDERS JS & RESPONSIVE-->
-						<script>
+							<!-- SLIDERS JS & RESPONSIVE-->
+							<script>
 
-							var swiper = new Swiper(".home-slider", {
+								var swiper = new Swiper(".home-slider", {
 loop: true,
 spaceBetween: 20,
 pagination: {
@@ -302,9 +312,9 @@ slidesPerView: 3
 }
 }
 });
-						</script>
-						<!-- SLIDER JS & RESPONSIVE END -->
+							</script>
+							<!-- SLIDER JS & RESPONSIVE END -->
+
+						{% endblock %}
 
 					{% endblock %}
-
-				{% endblock %}
