@@ -22,13 +22,11 @@ class Payment
     #[ORM\Column]
     private ?int $deliveryPrice = null;
 
-    #[ORM\Column]
-    private ?int $ttcAmount = null;
 
 
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $creatdeAt = null;
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?User $user = null;
@@ -74,26 +72,15 @@ class Payment
         return $this;
     }
 
-    public function getTtcAmount(): ?int
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->ttcAmount;
+        return $this->createdAt;
     }
 
-    public function setTtcAmount(int $ttcAmount): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->ttcAmount = $ttcAmount;
-
-        return $this;
-    }
-
-    public function getCreatdeAt(): ?\DateTimeImmutable
-    {
-        return $this->creatdeAt;
-    }
-
-    public function setCreatdeAt(\DateTimeImmutable $creatdeAt): static
-    {
-        $this->creatdeAt = $creatdeAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

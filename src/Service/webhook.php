@@ -11,6 +11,14 @@
 // 3) Run the server on http://localhost:4242
 //   php -S localhost:4242
 
+use App\Entity\Payment;
+use App\Entity\Post;
+use App\Entity\User;
+use App\Repository\PostRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Stripe\Util\LoggerInterface;
+
 require 'vendor/autoload.php';
 
 // The library needs to be configured with your account's secret key.
@@ -40,22 +48,77 @@ try {
     exit();
 }
 
-// Handle the event
+$kernel = new \App\Kernel('dev', true);
+$kernel->boot();
+$container = $kernel->getContainer();
+$entityManager = $container->get(EntityManagerInterface::class);
+$postRepository = $container->get(PostRepository::class);
+$userRepository = $container->get(UserRepository::class);
+$logger = $container->get(LoggerInterface::class);
+
+$logger->info('Webhook received', ['event' => $event]);
+
 switch ($event->type) {
     case 'payment_intent.succeeded':
         $paymentIntent = $event->data->object;
-     
-       
+
+        $logger->info('Payment intent succeeded', ['payment_intent' => $paymentIntent]);
+
+        $amountReceived = $paymentIntent->amount_received;
+        $currency = $paymentIntent->currency;
+        $postId = $paymentIntent->metadata->post_id ?? null;
+        $userEmail = $paymentIntent->charges->data[0]->billing_details->email;
+
+        $logger->info('Processing payment', [
+            'amount_received' => $amountReceived,
+            'currency' => $currency,
+            'post_id' => $postId,
+            'user_email' => $userEmail,
+        ]);
+
+        if ($postId && $userEmail) {
+            $post = $postRepository->find($postId);
+            $user = $userRepository->findOneBy(['email' => $userEmail]);
+
+            $deliveryPrice = 4;
+            $price = $amountReceived + $deliveryPrice;
+            if ($post && $user) {
+                $payment = new Payment();
+                $payment->setPost($post);
+                $payment->setPrice($post->getPostPrice());
+                $payment->setDeliveryPrice($deliveryPrice);
+                $payment->setCreatedAt(new \DateTimeImmutable());
+                $payment->setUser($user);
+
+                $entityManager->persist($payment);
+                $entityManager->flush();
+
+                $logger->info('Payment saved to database', ['payment' => $payment]);
+            } else {
+                $logger->error('Post or User not found', [
+                    'post' => $post,
+                    'user' => $user,
+                ]);
+            }
+        } else {
+            $logger->error('Post ID or User Email missing', [
+                'post_id' => $postId,
+                'user_email' => $userEmail,
+            ]);
+        }
         break;
     case 'payment_intent.payment_failed':
         $paymentIntent = $event->data->object;
-        // Traitez le paiement échoué ici
-        echo 'Le paiement a échoué pour la raison suivante : ' . $paymentIntent->last_payment_error->message;
-        break;  
-         // ... handle other event types
-  
+        $logger->error('Payment failed', ['error_message' => $paymentIntent->last_payment_error->message]);
+        break;
     default:
-        echo 'Reçu un type d\'événement inconnu : ' . $event->type;
+        $logger->warning('Unknown event type', ['event_type' => $event->type]);
+        break;
 }
 
-http_response_code(200);
+
+
+
+$response->setContent('Success');
+$response->setStatusCode(200);
+$response->send();
