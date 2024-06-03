@@ -93,6 +93,10 @@ switch ($event->type) {
                 $entityManager->persist($payment);
                 $entityManager->flush();
 
+                $entityManager->remove($post);
+                $entityManager->flush();
+
+
                 $logger->info('Payment saved to database', ['payment' => $payment]);
             } else {
                 $logger->error('Post or User not found', [

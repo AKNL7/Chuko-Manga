@@ -138,9 +138,13 @@ class BuyController extends AbstractController
 
     #[Route('/success', name: 'app_success')]
 
-    public function success(): Response
+    public function success(int $id, PostRepository $postRepository, EntityManagerInterface $entityManager): Response
     {
-
+        $post = $postRepository->find($id);
+        if ($post) {
+            $entityManager->remove($post);
+            $entityManager->flush();
+        }
         return $this->render('buy/success.html.twig');
     }
 
