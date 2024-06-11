@@ -72,8 +72,9 @@ class PostController extends AbstractController
 
 
 
-$post->setIsValid(false);
+     
         $entityManager->persist($newfile);
+        $post->setIsValid(false);
         $entityManager->persist($post);
         $entityManager->flush();
 

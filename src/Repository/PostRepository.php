@@ -22,7 +22,8 @@ class PostRepository extends ServiceEntityRepository
     public function findLatestPosts(int $limit = 2): array
     {
         return $this->createQueryBuilder('p')
-
+            ->where('p.isValid = :valid')
+            ->setParameter('valid', true)
             ->orderBy('p.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
@@ -32,18 +33,21 @@ class PostRepository extends ServiceEntityRepository
     public function findBestPricedPosts(): ?array
     {
         return $this->createQueryBuilder('p')
+            ->where('p.isValid = :valid')
+            ->setParameter('valid', true)
             ->orderBy('p.postPrice', 'ASC')
             // ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
 
-    public function findApprovedPosts(): array
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.isValid = :isValid')
-            ->setParameter('isValid', true)
-            ->getQuery()
-            ->getResult();
-    }
+        public function findApprovedPosts(): array
+        {
+            return $this->createQueryBuilder('p')
+                ->andWhere('p.isValid = :isValid')
+                ->setParameter('isValid', true)
+                ->getQuery()
+                ->getResult();
+        }
+  
 }

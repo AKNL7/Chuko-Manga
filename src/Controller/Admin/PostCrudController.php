@@ -49,12 +49,12 @@ class PostCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        $categories = $this->entityManager->getRepository(Category::class)->findAll();
-        dump($categories);
-        // Create an array of choices for the AssociationField
-        $choices = [];
-        foreach ($categories as $category) {
-            $choices[$category->getName()] = $category;
+        // $categories = $this->entityManager->getRepository(Category::class)->findAll();
+        // dump($categories);
+        // // Create an array of choices for the AssociationField
+        // $choices = [];
+        // foreach ($categories as $category) {
+        //     $choices[$category->getName()] = $category;
 
         return [
             IdField::new('id')->hideOnForm(),
@@ -74,14 +74,8 @@ class PostCrudController extends AbstractCrudController
                     }
                 })
                 ->hideOnForm(),
-            AssociationField::new('postCategory')
-                ->setFormTypeOptions([
-                    'choices' => $choices,
-                    'choice_label' => function ($category) {
-                        return $category->getName();
-                    },
-                    'placeholder' => 'Choose a category' // Optionnel : un libellé de choix par défaut
-                ]),
+            AssociationField::new('postCategory'),
+           
         
             DateTimeField::new('createdAt')->hideOnForm(),
             CollectionField::new('postImages', 'Image')
@@ -92,8 +86,8 @@ class PostCrudController extends AbstractCrudController
                 ->setBasePath('/uploads') // Spécifiez le chemin de base où se trouvent les images
                 ->onlyOnDetail(),
 
-        ];
-    }
+         ]; 
+  
 }
          
 

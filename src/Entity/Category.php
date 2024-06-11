@@ -25,10 +25,16 @@ class Category
     #[ORM\OneToMany(targetEntity: Post::class, mappedBy: 'postCategory')]
     private Collection $posts;
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+    
     public function __construct()
     {
         $this->posts = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {

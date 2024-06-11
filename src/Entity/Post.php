@@ -50,6 +50,12 @@ class Post
     #[ORM\Column(length: 1000)]
     private ?string $postResume = null;
 
+    /**
+     * @var Collection<int, Payment>
+     */
+    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'Post')]
+    private Collection $payments;
+
 
 
 
@@ -57,6 +63,7 @@ class Post
     public function __construct()
     {
         $this->postImages = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -209,6 +216,36 @@ class Post
     {
         // Votre logique pour retourner le prix multiplié par 100
         return $this->postPrice * 100;
+    }
+
+    /**
+     * @return Collection<int, Payment>
+     */
+    public function getPayments(): Collection
+    {
+        return $this->payments;
+    }
+
+    public function addPayment(Payment $payment): static
+    {
+        if (!$this->payments->contains($payment)) {
+            $this->payments->add($payment);
+            $payment->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removePayment(Payment $payment): static
+    {
+        if ($this->payments->removeElement($payment)) {
+            // set the owning side to null (unless already changed)
+            if ($payment->getPost() === $this) {
+                $payment->setPost(null);
+            }
+        }
+
+        return $this;
     }
 
 

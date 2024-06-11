@@ -13,9 +13,7 @@ class Payment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Post $post = null;
-
+   
     #[ORM\Column]
     private ?int $price = null;
 
@@ -28,25 +26,20 @@ class Payment
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?User $user = null;
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?Post $Post = null;
+
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?User $User = null;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPost(): ?Post
-    {
-        return $this->post;
-    }
-
-    public function setPost(?Post $post): static
-    {
-        $this->post = $post;
-
-        return $this;
-    }
+    
 
     public function getPrice(): ?int
     {
@@ -85,15 +78,29 @@ class Payment
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getPost(): ?Post
     {
-        return $this->user;
+        return $this->Post;
     }
 
-    public function setUser(?User $user): static
+    public function setPost(?Post $Post): static
     {
-        $this->user = $user;
+        $this->Post = $Post;
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
+   
 }
