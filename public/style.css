@@ -64,7 +64,6 @@ section {
   margin-bottom: 6rem;
   text-align: center;
   text-transform: uppercase;
-
 }
 
 .btn,
@@ -158,8 +157,6 @@ section {
   }
 }
 
-
-
 /* HEADER & NAV */
 
 .header {
@@ -192,7 +189,7 @@ section {
 .logo-nav {
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -257,22 +254,17 @@ section {
 
 /* FIN HEADER */
 
-
 /* Responsive NAV */
 #menu-btn {
   display: none;
 }
 /* Responsive NAV */
 
-
-
 /* HOMEPAGE SECTION */
 .home-bg {
   background-size: cover;
   background-position: center;
 }
-
-
 
 /* HOMEPAGE SLIDER  */
 .home-bg .home .slide {
@@ -320,7 +312,6 @@ section {
   background-color: var(--black);
 }
 
-
 /* HOMEPAGE CATEGORY SLIDER */
 
 .category .slide {
@@ -358,7 +349,6 @@ section {
   color: var(--black);
   user-select: none;
 }
-
 
 /* CARD PRODUCT HOMEPAGE CAROUSEL */
 .home-products .slide {
@@ -445,7 +435,6 @@ section {
 .home-products .slide:hover .fa-eye {
   left: 1rem;
 }
-
 
 /* CARD POST ANNONCE QUICK VIEW PAGE */
 
@@ -549,7 +538,6 @@ section {
   margin-top: 50px;
 }
 
-
 /* CARD PRODUCT */
 .products .box-container {
   display: grid;
@@ -557,7 +545,6 @@ section {
   gap: 1.5rem;
   justify-content: center;
   align-items: flex-start;
- 
 }
 
 .products .box-container .box {
@@ -716,7 +703,7 @@ section {
   position: relative;
 }
 .password-icon {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   align-items: center;
   top: 50%;
@@ -734,29 +721,28 @@ section {
   color: grey;
 }
 
-.eye-on {  
+.eye-on {
   color: grey;
- }
+}
 
- /* CHECKBOX LOGIN */
+/* CHECKBOX LOGIN */
 
- .checkbox-container .checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 1rem 1rem 1rem 1rem;
-    color: var(--black);
-    font-weight: 800;
-    font-size: 1.2rem;
- 
- }
+.checkbox-container .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+  color: var(--black);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
 
- .checkbox-container  > a {
-    color: var(--black);
-    font-weight: 800;
-    font-size: 1.2rem;
- }
+.checkbox-container > a {
+  color: var(--black);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
 
 /* PAGE ABOUT  */
 
@@ -840,12 +826,9 @@ section {
   color: var(--black);
 }
 
-
-
 /* CONTACT FORM */
 .contact-form-container {
   padding: 16px 0 16px 0px;
-  
 }
 .contact form {
   padding: 2rem;
@@ -936,7 +919,6 @@ section {
   color: var(--red);
 }
 
-
 /* CART PAGE */
 .shopping-cart .fa-edit {
   height: 4.5rem;
@@ -963,11 +945,11 @@ section {
 }
 
 .shopping-cart h3 {
-   margin-top: 40px;
+  margin-top: 40px;
 }
 
 .shopping-cart .box-container {
-   margin-top: 100px;
+  margin-top: 100px;
 }
 
 .cart-total {
@@ -998,31 +980,30 @@ section {
 }
 
 .delivery-choice {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .delivery-choice label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .delivery-choice select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 /* ORDER PAGE */
 
-.display-orders  {
+.display-orders {
   text-align: center;
   padding-bottom: 0;
   margin-top: 40px;
- 
 }
 
 .display-orders p {
@@ -1051,9 +1032,6 @@ section {
 .display-orders .grand-total span {
   color: var(--red);
 }
-
-
-
 
 .checkout-orders form {
   padding: 4rem;
@@ -1104,10 +1082,10 @@ section {
 }
 
 .checkout_orders-img img {
-   height: 20rem;
-   width: 100%;
-   object-fit: contain;
-   margin-bottom: 1rem;
+  height: 20rem;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
 .orders .box-container {
   display: flex;
@@ -1140,7 +1118,7 @@ section {
 .footer {
   background-color: var(--light-green);
   /* padding-bottom: 7rem; */
-  margin-bottom:0%;
+  margin-bottom: 0%;
 }
 
 .footer .grid {
@@ -1190,13 +1168,10 @@ section {
   color: var(--main-color);
 }
 
-
 /* ALL BANNER */
 .banner {
   position: relative;
   margin-bottom: 50px;
- 
- 
 }
 
 .banner img {
@@ -1218,23 +1193,157 @@ section {
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 40px;
-  font-weight:bolder;
-  text-transform:uppercase;
+  font-weight: bolder;
+  text-transform: uppercase;
   -webkit-text-stroke: 1.5px var(--black);
 }
 /* RESET PASSWORWRD PAGES */
 
 .check-email_container {
- display:flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- gap: 1rem;
- margin : 50px 0 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 50px 0 50px 0;
 }
 
 .check-email_container p {
   font-size: large;
+}
+
+/* CART */
+
+.container {
+  margin-top: 20px;
+  /* max-width: 1200px; */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #dee2e6;
+}
+
+.table thead th {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #495057;
+  text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table tfoot td {
+  font-weight: bold;
+  text-align: right;
+}
+
+.buttons {
+  display: flex;
+  flex: wrap;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buttons .button {
+  margin: 5px;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* Styles spécifiques pour les boutons d'action */
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.button-group .button-action {
+  padding: 8px;
+}
+
+.button-group .button-action svg {
+  vertical-align: middle;
+}
+
+/* CGV */
+.container-cgv {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.content-cgv {
+    display: none;
+    margin-top: 10px;
+}
+
+.show-cgv {
+    display: block;
+}
+
+.arrow-icon {
+    display: inline-block;
+    margin-right: 5px; /* Espace à droite de l'icône */
+    color: #333; /* Couleur de l'icône */
+    font-size: 14px; /* Taille de la police de l'icône */
+    transition: transform 0.3s ease; /* Animation de transformation */
+}
+
+.toggle.open .arrow-icon {
+    transform: rotate(90deg); /* Rotation de l'icône lorsque la section est ouverte */
 }
 /* RESPONSIVE */
 
@@ -1288,11 +1397,40 @@ section {
     padding: 8px 16px;
   }
 
-    .category_title {
+  .category_title {
     font-size: 24px;
   }
 
+  .table thead {
+    display: none;
+  }
 
+  .table tbody,
+  .table tfoot,
+  .table tr {
+    display: block;
+  }
+
+  .table tr {
+    margin-bottom: 10px; /* Ajoute un espace entre les lignes */
+    background-color: #fff; /* Rétablit la couleur de fond */
+  }
+
+  .table td,
+  .table th {
+    display: block;
+    text-align: center;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+
+  .table td:last-child {
+    text-align: center;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 450px) {
@@ -1303,7 +1441,6 @@ section {
   .heading {
     font-size: 3rem;
     margin-bottom: 4rem;
-
   }
 
   .header .flex .logo-nav img {
@@ -1343,16 +1480,21 @@ section {
   .checkbox-container .checkbox {
     font-weight: 800;
     font-size: 1rem;
- 
- }
+  }
 
- .checkbox-container  > a {
+  .checkbox-container > a {
     color: var(--black);
     font-weight: 800;
     font-size: 1rem;
- }
-
-
-  
+  }
 }
 
+@media screen and (min-width: 1200px) {
+  .container .table-responsive {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

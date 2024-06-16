@@ -22,19 +22,26 @@
 		<!-- font awesome cdn lien  -->
 		<link
 		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Xf8qj0CStZR/pWx8z6kHFU5fN9In5z6lKpJkraNbSy71WZxw7BQ0mOV1UO+HrLjuo7YgDw+LZ/z5lGjfyU/dYg==" crossorigin="anonymous" referrerpolicy="no-referrer"/> #}
 
 
-		<!-- custom css file lien -->
+
 		<link rel="stylesheet" href={{asset('style.css')}}>
+		
 	{% endblock %}
 
-	{% block stylesheetsVisibility %}{% endblock %}
+	{% block stylesheetsVisibility %}
+
+
+	{% endblock %}
 
 
 	{% block javascripts %}
 		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
 		<script src={{asset('script.js')}}></script>
+{# <script src="{{ asset('js/passwordtoggle.js') }}"></script> #}
+
 		{% block importmap %}
 			{{ importmap('app') }}
 		{% endblock %}
@@ -86,18 +93,18 @@
 			<div class="profile">
 
 				<p>LOGIN/INSCRIPTION</p>
-				<a href={{path('app_forgot_password_request')}} class="btn">Update Profile.</a>
+				<a href={{path('app_forgot_password_request')}} class="btn">Modifier mon profil</a>
 				<div class="flex-btn">
-					<a href={{path('app_register')}} class="option-btn">Register.</a>
-					<a href={{path('app_login')}} class="option-btn">Login.</a>
+					<a href={{path('app_register')}} class="option-btn">S'inscrire</a>
+					<a href={{path('app_login')}} class="option-btn">Se connecter</a>
 				</div>
 				<a href="components/user_logout.php" class="delete-btn">logout</a>
 
-				<p>Please Login Or Register First to proceed !</p>
+				{# <p>Please Login Or Register First to proceed !</p>
 				<div class="flex-btn">
 					<a href={{path('app_register')}} class="option-btn">Register</a>
 					<a href={{path('app_login')}} class="option-btn">Login</a>
-				</div>
+				</div> #}
 
 
 			</div>

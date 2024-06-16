@@ -7,36 +7,60 @@
 
 <section class="products">
 
+	<h1 class="heading">Toutes les annonces</h1>
+
+	<!-- CARD POST BEGIN -->
+
+
 	<div class="box-container">
 
+		{% for post in approvedPosts %}
 
-		<form action="" method="post" class="box">
-			<input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
-			<input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
-			<input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
-			<input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
-			<button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
-			<a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
-			<img src="./Assets/images/9782382754665_1_75.jpg" alt="">
 
-			<div class="name">
-				Titre de l'annonce
+			<form action="" method="post" class="box">
+				<input type="hidden" name="pid" value="product_id">
+				<input type="hidden" name="name" value="product_name">
+				<input type="hidden" name="price" value="product_price">
+				<input
+				type="hidden" name="image" value="product_image">
 
-			</div>
-			<div class="flex">
-				<div class="price">
-					<span>Nrs.</span>
+				<!-- Wishlist link delete -->
+				<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
+
+				{% for file in post.postImages %}
+
+					<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+				{% endfor %}
+				<div class="name"></div>
+				<div class="name">
+					{{ post.postTitle }}
+
 
 				</div>
-				<input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
-			</div>
-			<input type="submit" value="add to cart" class="btn" name="add_to_cart">
-		</form>
+				<div class="flex">
+
+					<div class="price">
+						<span>{{ post.postPrice }}</span>
+
+						<span>€</span>
+					</div>
+
+				</div>
+				<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn">Ajouter au panier</a>
 
 
+			</form>
+		{% endfor %}
+		{{dump(approvedPosts)}}
 	</div>
 
+	<!-- CARD POST END -->
+
+	<!-- <p class="empty">no products found!</p  -->
 </section>
+
+
 
 
 

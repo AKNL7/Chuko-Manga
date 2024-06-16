@@ -1,51 +1,85 @@
-let navbar = document.querySelector(".header .flex .navbar");
-let profile = document.querySelector(".header .flex .profile");
+document.addEventListener("DOMContentLoaded", function () {
+  // Gestion de la Navbar
+  let navbar = document.querySelector(".header .flex .navbar");
+  let profile = document.querySelector(".header .flex .profile");
 
-document.querySelector("#menu-btn").onclick = () => {
-  navbar.classList.toggle("active");
-  profile.classList.remove("active");
-};
+  document.querySelector("#menu-btn").addEventListener("click", () => {
+    navbar.classList.toggle("active");
+    profile.classList.remove("active");
+  });
 
-document.querySelector("#user-btn").onclick = () => {
-  profile.classList.toggle("active");
-  navbar.classList.remove("active");
-};
+  document.querySelector("#user-btn").addEventListener("click", () => {
+    profile.classList.toggle("active");
+    navbar.classList.remove("active");
+  });
 
-window.onscroll = () => {
-  navbar.classList.remove("active");
-  profile.classList.remove("active");
-};
-
-let mainImage = document.querySelector(
-  ".quick-view .box .row .image-container .main-image img"
-);
-let subImages = document.querySelectorAll(
-  ".quick-view .box .row .image-container .sub-image img"
-);
-
-subImages.forEach((images) => {
-  images.onclick = () => {
-    src = images.getAttribute("src");
-    mainImage.src = src;
+  window.onscroll = () => {
+    navbar.classList.remove("active");
+    profile.classList.remove("active");
   };
+
+  // Gestion des quick view
+  let mainImage = document.querySelector(
+    ".quick-view .box .row .image-container .main-image img"
+  );
+  let subImages = document.querySelectorAll(
+    ".quick-view .box .row .image-container .sub-image img"
+  );
+
+  subImages.forEach((image) => {
+    image.addEventListener("click", () => {
+      let src = image.getAttribute("src");
+      mainImage.src = src;
+    });
+  });
+
+  // Gestion affichage mot de passe
+  // const eyeOn = document.querySelector(".eye-on");
+  // const eyeOff = document.querySelector(".eye-off");
+  // const inputPassword = document.querySelector("#inputPassword");
+
+  // eyeOn.addEventListener("click", () => {
+  //   eyeOn.style.display = "none";
+  //   eyeOff.style.display = "block";
+  //   inputPassword.type = "text";
+  // });
+
+  // eyeOff.addEventListener("click", () => {
+  //   eyeOff.style.display = "none";
+  //   eyeOn.style.display = "block";
+  //   inputPassword.type = "password";
+  // });
+
+  // Gestion des Menus déroulants
+  const toggles = document.querySelectorAll(".toggle");
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", function () {
+      const targetId = this.getAttribute("data-target");
+      const content = document.getElementById(targetId);
+
+      if (content) {
+        content.classList.toggle("show-cgv");
+                  this.classList.toggle("open");
+      }
+    });
+  });
 });
 
-const eyeOn = document.querySelector(".eye-on");
-const eyeOff = document.querySelector(".eye-off");
-const inputPassword = document.querySelector("#inputPassword");
+  function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("inputPassword");
+            var icon = document.querySelector(".password-toggle i");
 
-eyeOn.addEventListener("click", () => {
-  eyeOn.style.display = "none";
-  eyeOff.style.display = "block";
-  inputPassword.type = "text";
-});
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            }
+        }
 
-eyeOff.addEventListener("click", () => {
-  eyeOff.style.display = "block";
-  eyeOn.style.display = "none";
-  inputPassword.type = "password";
-});
 
-// import "./styles/app.css";
-
-console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");
+// console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");

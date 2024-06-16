@@ -4,52 +4,81 @@
 {% endblock %}
 
 {% block body %}
+	<div class="container">
 
-	{% if items|length > 0 %}
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Titre</th>
-					<th>Condition</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-					<th>Total</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for item in items %}
-					<tr>
-						<td>{{ item.product.postTitle }}</td>
-						<td>{{ item.product.postCondition }}</td>
-						<td>{{ item.product.postPrice }}</td>
-						<td>{{ item.quantity }}</td>
-						<td>{{ item.product.postPrice * item.quantity }}</td>
-						<td>
-							<a href="{{ path('app_cart_add', {'id': item.product.id}) }}">Ajouter</a>
-							<a href="{{ path('app_cart_less', {'id': item.product.id}) }}">Retirer</a>
-							<a href="{{ path('app_cart_remove', {'id': item.product.id}) }}">Supprimer</a>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="4">Total :</td>
-					<td>{{ total }}</td>
-					<td></td>
-					<!-- Vous pouvez laisser vide pour la dernière colonne -->
-				</tr>
-			</tfoot>
-		</table>
+		{% if items|length > 0 %}
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Titre</th>
+							<th scope="col">Condition</th>
+							<th scope="col">Prix</th>
+							<th scope="col">Quantité</th>
+						
+							<th scope="col">Retirer</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+							<tr>
+								<td>{{ item.product.postTitle }}</td>
+								<td>{{ item.product.postCondition }}</td>
+								<td>{{ item.product.postPrice | number_format(2, ',', ' ') }}
+									€</td>
 
-		<a href="{{ path('app_buy', {'id': items[0].product.id}) }}" class='btn'>Valider le panier</a>
+								<td>{{ item.quantity }}</td>
+								{# <td>{{ item.product.postPrice * item.quantity }}</td> #}
+								<td class="center">
+									<div
+										class="button-group">
+										{# <a href="{{ path('app_cart_add', {'id': item.product.id}) }}" class="button-action">
+																					<svg width="24" height="24" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+																						<path d="M8 0a.5.5 0 0 1 .5.5v7h7a.5.5 0 0 1 0 1h-7v7a.5.5 0 0 1-1 0v-7h-7a.5.5 0 0 1 0-1h7v-7A.5.5 0 0 1 8 0z"/>
+																					</svg></a> #}
 
-		<a href="{{ path('app_home') }}" class="btn">Continuer vos achats</a>
 
-	{% else %}
-		<p>Votre panier est vide</p>
-	{% endif %}
+										<a href="{{ path('app_cart_less', {'id': item.product.id}) }}" class="button-action">
+<svg width="24" height="24" fill="#FF0000" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 
+												<path d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8z"/>
+											</svg>
+										</a>
+
+
+									</div>
+								</td>
+							</tr>
+							{# <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" class="button-action-">Supprimer le panier
+							</a> #}
+
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" class="text-right font-weight-bold">Total :</td>
+
+							<td>{{ total| number_format(2, ',', ' ')  }}
+								€</td>
+
+							{# <td></td> #}
+							
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="buttons">
+
+				<a href="{{ path('app_buy', {'id': items[0].product.id}) }}" class='button btn-primary'>Valider le panier</a>
+
+
+				<a href="{{ path('app_home') }}" class="button btn-secondary">Continuer vos achats</a>
+
+			</div>
+		{% else %}
+			<p class="alert">Votre panier est vide</p>
+
+		{% endif %}
+	</div>
 {% endblock %}
 
