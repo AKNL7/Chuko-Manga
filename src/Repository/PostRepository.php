@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Post;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -49,5 +50,14 @@ class PostRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
         }
-  
+
+    public function findByCategory(Category $category): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.postCategory = :category')
+            ->setParameter('category', $category)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

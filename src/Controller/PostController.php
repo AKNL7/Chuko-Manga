@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Files;
 use App\Entity\Post;
+use App\Entity\Category;
 use App\Form\SubmitPostType;
 use App\Repository\PostRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,5 +93,22 @@ class PostController extends AbstractController
 
 
 
-  
+  // #[Route('/category/{categoryId}/posts', name: 'app_category_posts')]
+  // public function categoryPosts($categoryId, PostRepository $postRepository, CategoryRepository $categoryRepository): Response
+  // {
+  //   $category = $categoryRepository->find($categoryId);
+
+  //   if (!$category) {
+  //     throw $this->createNotFoundException('Category not found');
+  //   }
+
+  //   $posts = $category->getPosts()->filter(function ($post) {
+  //     return $post->isValid();
+  //   });
+
+  //   return $this->render('category/index.html.twig', [
+  //     'category' => $category,
+  //     'posts' => $posts,
+  //   ]);
+  // }
 }

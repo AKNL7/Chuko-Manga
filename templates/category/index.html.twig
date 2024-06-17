@@ -1,70 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Category
+{% endblock %}
 
 {% block body %}
 
+	<section class="products">
+		<h1 class="heading">Toutes les annonces de la catégorie "{{ category.name }}"</h1>
 
-<section class="products">
+		<div class="box-container">
+			{% for post in posts %}
+				<form action="" method="post" class="box">
+					<input type="hidden" name="pid" value="product_id">
+					<input type="hidden" name="name" value="product_name">
+					<input type="hidden" name="price" value="product_price">
+					<input type="hidden" name="image" value="product_image">
 
-	<h1 class="heading">Toutes les annonces</h1>
+					<a href="{{ path('app_quick_view', {'id': post.id} ) }}" class="fas fa-eye"></a>
 
-	<!-- CARD POST BEGIN -->
+					{% for file in post.postImages %}
+						<img src="{{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+					{% endfor %}
 
-
-	<div class="box-container">
-
-		{% for post in approvedPosts %}
-
-
-			<form action="" method="post" class="box">
-				<input type="hidden" name="pid" value="product_id">
-				<input type="hidden" name="name" value="product_name">
-				<input type="hidden" name="price" value="product_price">
-				<input
-				type="hidden" name="image" value="product_image">
-
-				<!-- Wishlist link delete -->
-				<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
-
-				{% for file in post.postImages %}
-
-					<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
-				{% endfor %}
-				<div class="name"></div>
-				<div class="name">
-					{{ post.postTitle }}
-
-
-				</div>
-				<div class="flex">
-
-					<div class="price">
-						<span>{{ post.postPrice }}</span>
-
-						<span>€</span>
+					<div class="name">{{ post.postTitle }}</div>
+					<div class="flex">
+						<div class="price">
+							<span>{{ post.postPrice }}</span>
+							<span>€</span>
+						</div>
 					</div>
-
-				</div>
-				<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn">Ajouter au panier</a>
-
-
-			</form>
-		{% endfor %}
-		{{dump(approvedPosts)}}
-	</div>
-
-	<!-- CARD POST END -->
-
-	<!-- <p class="empty">no products found!</p  -->
-</section>
-
-
-
-
-
-
-
+					<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn">Ajouter au panier</a>
+				</form>
+			{% endfor %}
+		</div>
+	</section>
 
 {% endblock %}
+
