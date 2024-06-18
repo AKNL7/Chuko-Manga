@@ -66,6 +66,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+     // Gestion de l'animation d'ajout au panier
+    // const addToCartLinks = document.querySelectorAll('.add-to-cart');
+
+    // addToCartLinks.forEach(link => {
+    //     link.addEventListener('click', event => {
+    //         event.preventDefault(); // Empêcher la navigation vers l'URL spécifiée
+
+    //         // Ajoutez ici votre animation pour l'ajout au panier
+    //         link.classList.add('added-to-cart');
+
+    //         // Optionnel : attendez un moment pour simuler une animation
+    //         setTimeout(() => {
+    //             link.classList.remove('added-to-cart');
+    //         }, 1000); // 1000 millisecondes (1 seconde) - ajustez selon votre animation
+
+    //         // Optionnel : pouvez également ajouter une notification, etc.
+    //     });
+    // });
+
+
   function togglePasswordVisibility() {
             var passwordInput = document.getElementById("inputPassword");
             var icon = document.querySelector(".password-toggle i");
@@ -79,7 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon.classList.remove("fa-eye");
                 icon.classList.add("fa-eye-slash");
             }
-        }
+}
+      
+
+
+
+
 
 
 // console.log("This log comes from assets/app.js - welcome to AssetMapper! 🎉");

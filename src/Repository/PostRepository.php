@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use App\Entity\Category;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -57,6 +58,26 @@ class PostRepository extends ServiceEntityRepository
             ->andWhere('p.postCategory = :category')
             ->setParameter('category', $category)
             ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findSubmittedPosts(User $user): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.user = :user')
+            ->andWhere('p.isValid = true')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
+    }
+
+    // Trouver les post toujours en vente 
+    public function findAvailablePosts(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.isValid = true')
+            ->andWhere('p.isSold = false') // Assurez-vous d'exclure les annonces vendues
             ->getQuery()
             ->getResult();
     }

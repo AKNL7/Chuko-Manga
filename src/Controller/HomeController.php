@@ -20,7 +20,7 @@ class HomeController extends AbstractController
             $bestPricedPosts = $postRepository->findBestPricedPosts();
         $categories = $categoryRepository->findAll();
 
-
+       
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'latestPosts' => $latestPosts,

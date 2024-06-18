@@ -1,105 +1,130 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MySpaceController!{% endblock %}
+{% block title %}My Space
+{% endblock %}
 
 {% block body %}
-<section class="products">
+	<section class="products">
 
-{% for flash_success in app.flashes('sucess') %}
-	<div class="alert alert-sucess" role="alert">{{ flash_sucess }}</div>
-{% endfor %}
+		{% for flash_success in app.flashes('sucess') %}
+			<div class="alert alert-sucess" role="alert">{{ flash_sucess }}</div>
+		{% endfor %}
 
+<div class="myspace">
+		<h1>Bonjour
+			{{ firstName }}</h1>
 
-<h1>Bonjour {{ firstName }}</h1>
+		<br>
+		{% if verified is same as true %}
+			<div class="text">Votre adresse email à bien été verifiée ✅</div>
 
-<br>
-{% if verified is same as true %}
-<div class="text">Votre adresse email à bien été verifiée ✅</div>
+		{% elseif verified is same as false %}
+			<div class="text">Votre adresse email n'a pas été verifiée ❌</div>
 
-{% elseif verified is same as false %}
-<div class="text">Votre adresse email n'a pas été verifiée ❌</div>
+		{% endif %}
+</div>
+		<br>
+		<br>
 
-{% endif %}
-
-<br>
-<br>
-
-{# {% if is_granted('ROLE_CUSTOMER')%} #}
-<h2>Mes Achats</h2>
-
-{# Afficher card produits achetés #}
-<div class="box-container">
+		{# {% if is_granted('ROLE_CUSTOMER')%} #}
 
 
-	<form action="" method="post" class="box">
-		<input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
-		<input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
-		<input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
-		<input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
-		<button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
-		<a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
-		<img src="" alt="">
+		<h3 class="heading">Mes Annonces</h3>
 
-		<div class="name">
-			Titre de l'annonce
+		<div class="box-container">
+			{% if submittedPosts is not empty %}
+				{% for post in submittedPosts %}
 
-		</div>
-		<div class="flex">
-			<div class="price">
-				<span>Nrs.</span>
+					<form action="" method="post" class="box">
 
+						{% for file in post.postImages %}
+
+
+							<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+						{% endfor %}
+						<div class="name">
+							{{ post.postTitle }}
+
+
+						</div>
+						<div class="flex">
+
+							<div class="price">
+								<span>{{ post.postPrice }}</span>
+
+								<span>€</span>
+							</div>
+
+						</div>
+
+
+						{% if post.isSold() %}
+							<span style="color: green;">Vendu</span>
+						{% else %}
+							<span style="color: red;">En Vente</span>
+						{% endif %}
+					</form>
+				{% else %}
+					<p>No submitted posts found.</p>
+
+
+				{% endfor %}
 			</div>
-			{# <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1"> #}
+		{% else %}
+			<p>No submitted posts found.</p>
+		{% endif %}
+
+
+		<h3 class="heading">Mes achats</h3>
+
+		<div class="box-container">
+
+			{% for payment in purchasedPosts %}
+
+
+				<form action="" method="post" class="box">
+
+					{% for file in payment.Post.postImages %}
+
+
+						<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+
+					{% endfor %}
+					<div class="name">
+						{{ payment.Post.postTitle }}
+
+
+					</div>
+					<div class="flex">
+
+						<div class="price">
+							<span>{{ payment.Post.postPrice }}</span>
+
+							<span>€</span>
+						</div>
+
+					</div>
+				</form>
+			{% else %}
+				<li>No purchased posts found.</li>
+
+			{% endfor %}
+
+
 		</div>
-	
-	</form>
 
 
-</div>
+	</div>
 
-{# {% endif %} #}
-
-<h3>Mes Annonces</h3>
-{# Afficher annonces postées #}
-<div class="box-container">
+	<div class="data">
+		<h3 class="heading-data">Vos données personnelles</h3>
+		<br>
 
 
-	<form action="" method="post" class="box">
-		<input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
-		<input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
-		<input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
-		<input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
-		<button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
-		<a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
-		<img src="" alt="">
-
-		<div class="name">
-			Titre de l'annonce
-
-		</div>
-		<div class="flex">
-			<div class="price">
-				<span>Nrs.</span>
-
-			</div>
-			{# <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1"> #}
-		</div>
-	
-	</form>
-
-
-</div>
-
-<div class="data">
-<h3>Vos données personnelles</h3>
-<br>
-
-
-<p>{{ firstName }} {{lastName}} </p>
-<p>{{ email }}</p>
-</div>
-
-</section>
-
-
-{% endblock %}
+		<p>{{ firstName }}
+			{{lastName}}
+		</p>
+		<p>{{ email }}</p>
+	</div>
+</section>{% endblock %}

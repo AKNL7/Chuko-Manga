@@ -1214,6 +1214,22 @@ section {
 
 /* CART */
 
+.animate-add-cart {
+  animation: add-cart-animation 1s;
+}
+
+@keyframes add-cart-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .container {
   margin-top: 20px;
   /* max-width: 1200px; */
@@ -1321,30 +1337,62 @@ section {
 
 /* CGV */
 .container-cgv {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .content-cgv {
-    display: none;
-    margin-top: 10px;
+  display: none;
+  margin-top: 10px;
 }
 
 .show-cgv {
-    display: block;
+  display: block;
 }
 
 .arrow-icon {
-    display: inline-block;
-    margin-right: 5px; /* Espace à droite de l'icône */
-    color: #333; /* Couleur de l'icône */
-    font-size: 14px; /* Taille de la police de l'icône */
-    transition: transform 0.3s ease; /* Animation de transformation */
+  display: inline-block;
+  margin-right: 5px; /* Espace à droite de l'icône */
+  color: #333; /* Couleur de l'icône */
+  font-size: 14px; /* Taille de la police de l'icône */
+  transition: transform 0.3s ease; /* Animation de transformation */
 }
 
 .toggle.open .arrow-icon {
-    transform: rotate(90deg); /* Rotation de l'icône lorsque la section est ouverte */
+  transform: rotate(
+    90deg
+  ); /* Rotation de l'icône lorsque la section est ouverte */
 }
+
+/* My SPACE  */
+
+/* Styles pour le conteneur principal */
+.heading {
+  margin-top: 20px; 
+}
+.data {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center; /* Centrer le contenu */
+    margin-top: 30px;
+}
+
+.heading-data {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.data p {
+    font-size:  2em;
+    margin-bottom: 5px;
+}
+
+.myspace > h1 {
+  font-size: 4em;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 991px) {
@@ -1430,6 +1478,16 @@ section {
 
   .buttons {
     flex-direction: column;
+  }
+
+  .data {
+    padding: 15px;
+  }
+  .heading {
+    font-size: 1.2em;
+  }
+  .data p {
+    font-size: 1em;
   }
 }
 

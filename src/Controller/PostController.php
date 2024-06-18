@@ -80,6 +80,10 @@ class PostController extends AbstractController
         $entityManager->persist($post);
         $entityManager->flush();
 
+        $post->setIsSold(true); // Met à jour le statut de vendu
+        $entityManager->persist($post);
+        $entityManager->flush();
+
         return $this->redirectToRoute('post_success');
       }
     }

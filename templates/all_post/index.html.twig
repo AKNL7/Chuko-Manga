@@ -13,17 +13,14 @@
 
 	<div class="box-container">
 
-{% for post in approvedPosts %}
+{% for post in availablePosts %}
+
 
 
 		<form action="" method="post" class="box">
-			<input type="hidden" name="pid" value="product_id">
-			<input type="hidden" name="name" value="product_name">
-			<input type="hidden" name="price" value="product_price">
-			<input
-			type="hidden" name="image" value="product_image">
+		
 
-			<!-- Wishlist link delete -->
+	
 <a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
 
 {% for file in post.postImages %}
@@ -46,19 +43,21 @@
 				</div>
 
 			</div>
-<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn">Ajouter au panier</a>
+<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
 
 
 
 		</form>
 {% endfor %}
-{{dump(approvedPosts)}}	
+
 </div>
 
 	<!-- CARD POST END -->
 
 	<!-- <p class="empty">no products found!</p  -->
 </section>
+
+
 
 
 {% endblock %}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html></html>
-<html lang="en"></html>
+
+<html lang="en">
 
 <head>
 
@@ -41,10 +41,10 @@
 
 		<script src={{asset('script.js')}}></script>
 {# <script src="{{ asset('js/passwordtoggle.js') }}"></script> #}
-
+{# 
 		{% block importmap %}
 			{{ importmap('app') }}
-		{% endblock %}
+		{% endblock %} #}
 	{% endblock %}
 
 </head>
@@ -98,7 +98,7 @@
 					<a href={{path('app_register')}} class="option-btn">S'inscrire</a>
 					<a href={{path('app_login')}} class="option-btn">Se connecter</a>
 				</div>
-				<a href="components/user_logout.php" class="delete-btn">logout</a>
+				<a href="logout/" class="delete-btn">logout</a>
 
 				{# <p>Please Login Or Register First to proceed !</p>
 				<div class="flex-btn">

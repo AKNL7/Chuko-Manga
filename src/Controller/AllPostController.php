@@ -15,17 +15,16 @@ class AllPostController extends AbstractController
     public function index(PostRepository $postRepository, EntityManagerInterface $entityManager ): Response
     {
 
-        $approvedPosts = $postRepository->findApprovedPosts();
-     
+
+        $availablePosts = $postRepository->findAvailablePosts();
         
         // $posts = $entityManager->getRepository(Post::class)->findAll();
         
         return $this->render('all_post/index.html.twig', [
             'controller_name' => 'AllPostController',
-            // 'posts' => $posts
-            'approvedPosts' => $approvedPosts,
+            'availablePosts' => $availablePosts,
           
-            // 'posts' => $postRepository->findBy(['isValid' => 'Approved']),
+           
             
 
             

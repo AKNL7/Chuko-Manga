@@ -41,6 +41,9 @@ class Post
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $user = null;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $isSold = false;
+    
     /**
      * @var Collection<int, Files>
      */
@@ -244,6 +247,18 @@ class Post
                 $payment->setPost(null);
             }
         }
+
+        return $this;
+    }
+    public function isSold(): ?bool
+    {
+        return
+            $this->getPayments()->count() > 0;
+    }
+
+    public function setIsSold(bool $isSold): self
+    {
+        $this->isSold = $isSold;
 
         return $this;
     }
