@@ -2,209 +2,214 @@
 
 <html lang="en">
 
-<head>
+	<head>
 
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-	<title>
-		{% block title %}
-			Chuko Manga
+		<title>
+			{% block title %}
+				Chuko Manga
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			<link
+			rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+
+			<!-- font awesome cdn lien  -->
+			<link
+			rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+			{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Xf8qj0CStZR/pWx8z6kHFU5fN9In5z6lKpJkraNbSy71WZxw7BQ0mOV1UO+HrLjuo7YgDw+LZ/z5lGjfyU/dYg==" crossorigin="anonymous" referrerpolicy="no-referrer"/> #}
+
+
+			<link rel="stylesheet" href={{asset('style.css')}}>
+
 		{% endblock %}
-	</title>
 
-	{% block stylesheets %}
-		<link
-		rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-
-		<!-- font awesome cdn lien  -->
-		<link
-		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Xf8qj0CStZR/pWx8z6kHFU5fN9In5z6lKpJkraNbSy71WZxw7BQ0mOV1UO+HrLjuo7YgDw+LZ/z5lGjfyU/dYg==" crossorigin="anonymous" referrerpolicy="no-referrer"/> #}
+		{% block stylesheetsVisibility %}{% endblock %}
 
 
-
-		<link rel="stylesheet" href={{asset('style.css')}}>
-		
-	{% endblock %}
-
-	{% block stylesheetsVisibility %}
-
-
-	{% endblock %}
-
-
-	{% block javascripts %}
+		{% block javascripts %}
 		<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
 		<script src={{asset('script.js')}}></script>
-{# <script src="{{ asset('js/passwordtoggle.js') }}"></script> #}
-{# 
+		{# <script src="{{ asset('js/passwordtoggle.js') }}"></script> #}
+		{# 
 		{% block importmap %}
 			{{ importmap('app') }}
-		{% endblock %} #}
-	{% endblock %}
+		{% endblock %} #}{% endblock %}
 
-</head>
-<body>
+	</head>
+	<body>
 
-	<!-- HEADER BEGIN -->
-	<header class="header">
+		<!-- HEADER BEGIN -->
+		<header class="header">
 
-		<section
-			class="flex">
+			<section
+				class="flex">
 
-			<!-- NAVBAR BEGIN -->
+				<!-- NAVBAR BEGIN -->
 
-			<div class="logo-nav">
-				<a href={{path('app_home')}} class="logo">
+				<div class="logo-nav">
+					<a href={{path('app_home')}} class="logo">
 
-					<img src={{asset('./images/logo/LogoChukoManga.png')}}></a>
-				<span class"brand_name">CHUKO MANGA</span>
+						<img src={{asset('./images/logo/LogoChukoManga.png')}}></a>
+					<span class"brand_name">CHUKO MANGA</span>
 
-			</div>
-
-
-			<nav class="navbar">
-
-				<a href={{path('app_login')}}>Se Connecter</a>
-				<a href={{path('app_register')}}>S'inscrire</a>
-				<a href={{path('app_post')}}>Vendre</a>
-				<a href={{path('app_contact')}}>Contact</a>
-
-
-			</nav>
-
-			<div class="icons">
-
-				<div id="menu-btn" class="fas fa-bars"></div>
-
-				<a href={{path('app_cart')}}>
-					<i class="fas fa-shopping-cart"></i>
-					<span></span>
-				</a>
-
-				<a href={{path('app_login')}} id="user-btn" class="fas fa-user"></a>
-
-			</div>
-
-			<div class="profile">
-
-				<p>LOGIN/INSCRIPTION</p>
-				<a href={{path('app_forgot_password_request')}} class="btn">Modifier mon profil</a>
-				<div class="flex-btn">
-					<a href={{path('app_register')}} class="option-btn">S'inscrire</a>
-					<a href={{path('app_login')}} class="option-btn">Se connecter</a>
 				</div>
-				<a href="logout/" class="delete-btn">logout</a>
-
-				{# <p>Please Login Or Register First to proceed !</p>
-				<div class="flex-btn">
-					<a href={{path('app_register')}} class="option-btn">Register</a>
-					<a href={{path('app_login')}} class="option-btn">Login</a>
-				</div> #}
 
 
+				<nav class="navbar">
+
+					<a href={{path('app_login')}}>Se Connecter</a>
+					<a href={{path('app_register')}}>S'inscrire</a>
+					<a href={{path('app_post')}}>Vendre</a>
+					<a href={{path('app_contact')}}>Contact</a>
+
+
+				</nav>
+
+				<div class="icons">
+
+					<div id="menu-btn" class="fas fa-bars"></div>
+
+					<a href={{path('app_cart')}}>
+						<i class="fas fa-shopping-cart"></i>
+						<span></span>
+					</a>
+
+					<a href={{path('app_login')}} id="user-btn" class="fas fa-user"></a>
+
+				</div>
+
+				<div class="profile">
+
+					<p>LOGIN/INSCRIPTION</p>
+					<a href={{path('app_forgot_password_request')}} class="btn">Modifier mon profil</a>
+					<div class="flex-btn">
+						<a href={{path('app_register')}} class="option-btn">S'inscrire</a>
+						<a href={{path('app_login')}} class="option-btn">Se connecter</a>
+					</div>
+					<a href="logout/" class="delete-btn">logout</a>
+
+					{# <p>Please Login Or Register First to proceed !</p>
+									<div class="flex-btn">
+										<a href={{path('app_register')}} class="option-btn">Register</a>
+										<a href={{path('app_login')}} class="option-btn">Login</a>
+									</div> #}
+
+
+				</div>
+				<!-- NAVBAR END -->
+
+			</section>
+
+		</header>
+		<!-- HEADER END -->
+
+		{% block body %}{% endblock %}
+
+		<!-- FOOTER BEGIN  -->
+		<footer class="footer">
+
+			<section class="grid">
+
+				<div class="box">
+					<h3>Quick links</h3>
+					<a href={{path('app_home')}}>
+						<i class="fas fa-angle-right"></i>
+						Home</a>
+
+					<a href={{path('app_all_post')}}>
+
+						<i class="fas fa-angle-right"></i>
+						Nos annonces</a>
+					<a href={{path('app_contact')}}>
+
+
+						<i class="fas fa-angle-right"></i>
+						Contact</a>
+					<a href={{path('app_mentions_legales')}}>
+
+
+						<i class="fas fa-angle-right"></i>
+						Mentions légales & CGU
+					</a>
+<a href={{path('app_cgv')}}>
+
+
+	<i class="fas fa-angle-right"></i>
+	CGV
+</a>
+
+				</div>
+
+				<div class="box">
+					<h3>Extra links</h3>
+					<a href={{path('app_login')}}>
+						<i class="fas fa-angle-right"></i>
+						Login</a>
+					<a href={{path('app_register')}}>
+
+
+						<i class="fas fa-angle-right"></i>
+						Register</a>
+					<a href={{path('app_cart')}}>
+
+						<i class="fas fa-angle-right"></i>
+						Cart</a>
+					<a href={{path('app_rgpd')}}>
+
+						<i class="fas fa-angle-right"></i>
+					   RGPD</a>
+				</div>
+
+				<div class="box">
+					<h3>Contact Us.</h3>
+					<a href="#">
+						<i class="fas fa-phone"></i>
+						+33 00 00 00 00</a>
+
+					<a href="mailto:chuko_manga@gmail.com">
+						<i class="fas fa-envelope"></i>
+						chuko_manga@gmail.com</a>
+					<a href="#">
+						<i class="fas fa-map-marker-alt"></i>
+						Saint Etienne, France
+					</a>
+				</div>
+
+				<div class="box">
+					<h3>Follow Us</h3>
+					<a href="#" target="_blank">
+						<i class="fab fa-facebook-f"></i>facebook</a>
+					<a href="#" target="_blank">
+						<i class="fab fa-twitter"></i>Twitter</a>
+					<a href="#" target="_blank">
+						<i class="fab fa-instagram"></i>Instagram</a>
+					<a href="#" target="_blank">
+						<i class="fab fa-linkedin"></i>Linkedin</a>
+				</div>
+
+			</section>
+
+			<div class="credit">&copy; copyright @
+																		         2024 by
+				<span>AKNL</span>
+				| all rights reserved!
 			</div>
-			<!-- NAVBAR END -->
 
-		</section>
-
-	</header>
-	<!-- HEADER END -->
-
-	{% block body %}{% endblock %}
-
-	<!-- FOOTER BEGIN  -->
-	<footer class="footer">
-
-		<section class="grid">
-
-			<div class="box">
-				<h3>Quick links</h3>
-				<a href={{path('app_home')}}>
-					<i class="fas fa-angle-right"></i>
-					Home</a>
-				<a href="#">
+		</footer>
+		<!-- FOOTER END -->
 
 
-					<i class="fas fa-angle-right"></i>
-					About</a>
-				<a href={{path('app_all_post')}}>
+		{# // <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> #}
 
-					<i class="fas fa-angle-right"></i>
-					Nos annonces</a>
-				<a href={{path('app_contact')}}>
+		{% block CarouselJavascript %}{% endblock %}
 
 
-					<i class="fas fa-angle-right"></i>
-					Contact</a>
-			</div>
-
-			<div class="box">
-				<h3>Extra links</h3>
-				<a href={{path('app_login')}}>
-					<i class="fas fa-angle-right"></i>
-					Login</a>
-				<a href={{path('app_register')}}>
-
-
-					<i class="fas fa-angle-right"></i>
-					Register</a>
-				<a href={{path('app_home')}}>
-
-					<i class="fas fa-angle-right"></i>
-					Cart</a>
-				<a href={{path('app_post')}}>
-
-					<i class="fas fa-angle-right"></i>
-					Orders</a>
-			</div>
-
-			<div class="box">
-				<h3>Contact Us.</h3>
-				<a href="#">
-					<i class="fas fa-phone"></i>
-					+33 00 00 00 00</a>
-
-				<a href="mailto:chuko_manga@gmail.com">
-					<i class="fas fa-envelope"></i>
-					chuko_manga@gmail.com</a>
-				<a href="#">
-					<i class="fas fa-map-marker-alt"></i>
-					Saint Etienne, France
-				</a>
-			</div>
-
-			<div class="box">
-				<h3>Follow Us</h3>
-				<a href="#" target="_blank">
-					<i class="fab fa-facebook-f"></i>facebook</a>
-				<a href="#" target="_blank">
-					<i class="fab fa-twitter"></i>Twitter</a>
-				<a href="#" target="_blank">
-					<i class="fab fa-instagram"></i>Instagram</a>
-				<a href="#" target="_blank">
-					<i class="fab fa-linkedin"></i>Linkedin</a>
-			</div>
-
-		</section>
-
-		<div class="credit">&copy; copyright @
-														         2024 by
-			<span>AKNL</span>
-			| all rights reserved!
-		</div>
-
-	</footer>
-	<!-- FOOTER END -->
-
-
-	{# // <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> #}
-
-	{% block CarouselJavascript %}{% endblock %}
-
-
-</body></html>
+	</body>
+</html>
