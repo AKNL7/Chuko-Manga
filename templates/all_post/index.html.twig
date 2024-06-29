@@ -1,63 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos annonces{% endblock %}
+{% block title %}Nos annonces
+{% endblock %}
 
 {% block body %}
 
-<section class="products">
+	<section class="products">
 
-	<h1 class="heading">Toutes les annonces</h1>
+		<h1 class="heading">Toutes les annonces</h1>
 
-	<!-- CARD POST BEGIN -->
-
-
-	<div class="box-container">
-
-{% for post in availablePosts %}
+		<!-- CARD POST BEGIN -->
 
 
+		<div
+			class="box-container">
 
-		<form action="" method="post" class="box">
-		
+			<!-- Boucle sur tous les posts disponibles -->
 
-	
-<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
-
-{% for file in post.postImages %}
-
-<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
-{% endfor %}
-			<div class="name"></div>
-			<div class="name">
-{{ post.postTitle }}
+			{% for post in availablePosts %}
 
 
-			</div>
-			<div class="flex">
+				<!-- Formulaire pour chaque post -->
+				<form
+					class="box">
 
-				<div class="price">
-<span>{{ post.postPrice }}</span>
-
-					<span>€</span>
-				</div>
-
-			</div>
-<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
+					<!-- Lien vers la vue rapide du post avec une icône d'œil -->
+					<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
 
 
+					<!-- Boucle sur les images du post -->
+					{% for file in post.postImages %}
+						<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+					{% endfor %}
 
-		</form>
-{% endfor %}
+					<div class="name">
+						{{ post.postTitle }}
+					</div>
 
-</div>
+					<div class="flex">
+						<div class="price">
+							<span>{{ post.postPrice }}</span>
+							<span>€</span>
+						</div>
+					</div>
 
-	<!-- CARD POST END -->
+					<!-- Lien pour ajouter le post au panier -->
+					<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
+				</form>
+			{% endfor %}
+		</div>
 
-	<!-- <p class="empty">no products found!</p  -->
-</section>
+		<!-- CARD POST END -->
+		<p class="empty">no products found!</p>
 
-
+	</section>
 
 
 {% endblock %}

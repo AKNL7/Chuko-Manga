@@ -4,8 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div
+		class="container">
 
+		{# Vérifie s'il y a des articles dans le panier #}
 		{% if items|length > 0 %}
 			<div class="table-responsive">
 				<table class="table">
@@ -15,11 +17,13 @@
 							<th scope="col">Condition</th>
 							<th scope="col">Prix</th>
 							<th scope="col">Quantité</th>
-						
+
 							<th scope="col">Retirer</th>
 						</tr>
 					</thead>
 					<tbody>
+
+						{# Boucle à travers chaque article dans le panier #}
 						{% for item in items %}
 							<tr>
 								<td>{{ item.product.postTitle }}</td>
@@ -28,57 +32,54 @@
 									€</td>
 
 								<td>{{ item.quantity }}</td>
-								{# <td>{{ item.product.postPrice * item.quantity }}</td> #}
 								<td class="center">
 									<div
 										class="button-group">
-										{# <a href="{{ path('app_cart_add', {'id': item.product.id}) }}" class="button-action">
-																					<svg width="24" height="24" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-																						<path d="M8 0a.5.5 0 0 1 .5.5v7h7a.5.5 0 0 1 0 1h-7v7a.5.5 0 0 1-1 0v-7h-7a.5.5 0 0 1 0-1h7v-7A.5.5 0 0 1 8 0z"/>
-																					</svg></a> #}
 
-
+										{# Lien pour supprimer un article #}
 										<a href="{{ path('app_cart_less', {'id': item.product.id}) }}" class="button-action">
-<svg width="24" height="24" fill="#FF0000" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-
-												<path d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8z"/>
+											<svg width="24" height="24" fill="#FF0000" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8z"/>
 											</svg>
-										</a>
 
 
-									</div>
+										</div>
+									</td>
 								</td>
 							</tr>
-							{# <a href="{{ path('app_cart_remove', {'id': item.product.id}) }}" class="button-action-">Supprimer le panier
-							</a> #}
-
-						{% endfor %}
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="4" class="text-right font-weight-bold">Total :</td>
-
-							<td>{{ total| number_format(2, ',', ' ')  }}
-								€</td>
-
-							{# <td></td> #}
-							
-						</tr>
-					</tfoot>
-				</table>
-			</div>
-			<div class="buttons">
-
-				<a href="{{ path('app_buy', {'id': items[0].product.id}) }}" class='button btn-primary'>Valider le panier</a>
+						</a>
+						<a href="{{ path('app_cart_clear', {'id': item.product.id}) }}" class="button-action">Vider le panier</a>
 
 
-				<a href="{{ path('app_home') }}" class="button btn-secondary">Continuer vos achats</a>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="4" class="text-right font-weight-bold">Total :</td>
 
-			</div>
-		{% else %}
-			<p class="alert">Votre panier est vide</p>
+						{# filtre Twig qui formate le nombre (total) en une chaîne de caractères selon les paramètres spécifiés : #}
 
-		{% endif %}
-	</div>
-{% endblock %}
+						<td>{{ total| number_format(2, ',', ' ')  }}
+							€</td>
 
+
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div
+			class="buttons">
+
+			{# Lien pour valider le panier  qui améne a la session Stripe #}
+			<a href="{{ path('app_buy', {'id': items[0].product.id}) }}" class='button btn-primary'>Valider le panier</a>
+
+
+			<a href="{{ path('app_home') }}" class="button btn-secondary">Continuer vos achats</a>
+
+		</div>
+	{% else %}
+		{# Message affiché lorsque le panier est vide #}
+
+		<p class="alert">Votre panier est vide</p>
+
+	{% endif %}
+</div>{% endblock %}

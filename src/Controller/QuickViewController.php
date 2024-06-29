@@ -31,21 +31,15 @@ class QuickViewController extends AbstractController
     public function index(int $id, PostRepository $postRepository, FilesRepository $filesRepository, Post $post, EntityManagerInterface $entityManager,): Response
     {
 
-        // Retrieve the post information from the database
+          // Récupère les informations du post depuis la base de données
         $post = $this->managerRegistry->getRepository(Post::class)->find($id);
-        $user = $post->getUser();
-
-
-
-     
-       
-     
+        $user = $post->getUser(); // Récupère l'utilisateur associé au post
 
         if (!$post) {
             throw $this->createNotFoundException('The post does not exist');
         }
 
-        // Render the template and pass the post data
+   // Rendre le template et passer les données du post
         return $this->render('quick_view/index.html.twig', [
             'post' => $post,
             'id' =>$id,
@@ -59,3 +53,9 @@ class QuickViewController extends AbstractController
 
 
 }
+
+
+     
+       
+     
+

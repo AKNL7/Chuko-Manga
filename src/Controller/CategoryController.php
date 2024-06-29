@@ -16,21 +16,25 @@ class CategoryController extends AbstractController
     public function index($categoryId, PostRepository $postRepository, CategoryRepository $categoryRepository): Response
     {
 
+        // / Récupération de l'entité Category correspondant à l'ID fourni
         $category = $categoryRepository->find($categoryId);
 
+        // Vérification si la catégorie existe
         if (!$category) {
+
+            // Lance une exception si la catégorie n'est pas trouvée
             throw $this->createNotFoundException('Category not found');
         }
 
+        // Récupération des articles (Post) de la catégorie, en filtrant seulement ceux qui sont valides
         $posts = $category->getPosts()->filter(
             function ($post) {
                 return $post->isValid();
             }
         );
         return $this->render('category/index.html.twig', [
-            'controller_name' => 'CategoryController',
-            'category' => $category,
-            'posts' => $posts,
+            'category' => $category, // Objet Category à passer au template
+            'posts' => $posts, // Liste des annonces (posts) à passer au template
         ]);
     }
 }

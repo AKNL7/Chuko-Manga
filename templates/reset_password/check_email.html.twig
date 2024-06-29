@@ -11,6 +11,8 @@
 			<p class="check-email_content">S'il existe un compte correspondant à votre adresse e-mail, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
 				    Ce lien expirera dans
 				{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+{# Utilise la fonction de traduction trans pour afficher le message d'expiration du lien de réinitialisation. resetToken.expirationMessageKey et resetToken.expirationMessageData sont des données fournies par Symfony qui indiquent à l'utilisateur combien de temps le lien reste valide. #}
+
 			</p>
 			<p>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou<a href="{{ path('app_forgot_password_request') }}">
 					Essayer de nouveau</a>.</p>

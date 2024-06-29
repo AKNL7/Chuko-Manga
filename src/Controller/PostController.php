@@ -33,39 +33,42 @@ class PostController extends AbstractController
   public function index(EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger): Response
   {
 
-    // Create a new Post instance
+    // Création d'une nouvelle instance de Post
     $post = new Post();
 
-    // Create the form with the Post entity
+    // Création du formulaire avec l'entité Post
     $form = $this->createForm(SubmitPostType::class, $post);
 
-    // Handle the form submission
+    // Gestion de la soumission du formulaire
     $form->handleRequest($request);
 
 
-    // Check if the form is submitted and valid
+    // Vérification si le formulaire est soumis et valid
     if ($form->isSubmitted() && $form->isValid()) {
 
-      
 
+      // Récupération de l'utilisateur courant
       $user = $this->security->getUser();
       $post->setUser($user);
 
+      // Gestion des fichiers uploadés
       $uploadFiles = $form->get('postImages')->getData();
-
 
       if ($uploadFiles) {
 
         foreach ($uploadFiles as $file) {
-
+          // Génération d'un nom de fichier sécurisé
           $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
           $safeFilename = $slugger->slug($originalFilename);
           $newFilename = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
           try {
+            // Déplacement du fichier vers le répertoire dédié
             $file->move($this->getParameter('post_directory'), $newFilename);
           } catch (FileException $e) {
+            // Gestion des erreurs de fichier
           }
+          // Création d'une nouvelle entité Files pour chaque fichier
           $newfile = new Files();
           $newfile->setPostImage($newFilename);
           $post->addPostImage($newfile);
@@ -74,45 +77,32 @@ class PostController extends AbstractController
 
 
 
-     
-        $entityManager->persist($newfile);
-        $post->setIsValid(false);
+
+        // Persiste les entités et flush en base de données
+        $entityManager->persist($newfile); // Persiste le dernier fichier ajouté
+        $post->setIsValid(false); // Définit l'annonce comme non validée par défaut
         $entityManager->persist($post);
         $entityManager->flush();
 
+        // Marque l'annonce comme vendue (exemple de mise à jour de statut)
         $post->setIsSold(true); // Met à jour le statut de vendu
         $entityManager->persist($post);
         $entityManager->flush();
 
-        return $this->redirectToRoute('post_success');
+        // Redirige vers une page de succès après la soumission
+        return $this->redirectToRoute('app_post_success');
       }
     }
 
     return $this->render('post/index.html.twig', [
       'form' => $form->createView(),
-      'files' => $post->getPostImages(),
+      'files' => $post->getPostImages(),  // Récupère les images associées à l'article
     ]);
   }
 
-
-
-
-  // #[Route('/category/{categoryId}/posts', name: 'app_category_posts')]
-  // public function categoryPosts($categoryId, PostRepository $postRepository, CategoryRepository $categoryRepository): Response
-  // {
-  //   $category = $categoryRepository->find($categoryId);
-
-  //   if (!$category) {
-  //     throw $this->createNotFoundException('Category not found');
-  //   }
-
-  //   $posts = $category->getPosts()->filter(function ($post) {
-  //     return $post->isValid();
-  //   });
-
-  //   return $this->render('category/index.html.twig', [
-  //     'category' => $category,
-  //     'posts' => $posts,
-  //   ]);
-  // }
+  #[Route('/profile/post/success', name: 'app_post_success')]
+  public function success(): Response
+  {
+    return $this->render('post/successSubmission.html.twig');
+  }
 }

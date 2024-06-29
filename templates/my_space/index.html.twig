@@ -4,39 +4,49 @@
 {% endblock %}
 
 {% block body %}
-	<section class="products">
+	<section
+		class="products">
+
+		{# Affichage des messages flash de succès  #}
 
 		{% for flash_success in app.flashes('sucess') %}
 			<div class="alert alert-sucess" role="alert">{{ flash_sucess }}</div>
 		{% endfor %}
 
-<div class="myspace">
-		<h1>Bonjour
-			{{ firstName }}</h1>
+		<div class="myspace">
+			<h1>Bonjour
+				{{ firstName }}</h1>
 
+			<br>
+			{# Vérification de l'adresse email #}
+
+			{% if verified is same as true %}
+				<div class="text">Votre adresse email à bien été verifiée ✅</div>
+
+			{% elseif verified is same as false %}
+				<div class="text">Votre adresse email n'a pas été verifiée ❌</div>
+
+			{% endif %}
+		</div>
 		<br>
-		{% if verified is same as true %}
-			<div class="text">Votre adresse email à bien été verifiée ✅</div>
-
-		{% elseif verified is same as false %}
-			<div class="text">Votre adresse email n'a pas été verifiée ❌</div>
-
-		{% endif %}
-</div>
 		<br>
-		<br>
-
-		{# {% if is_granted('ROLE_CUSTOMER')%} #}
 
 
 		<h3 class="heading">Mes Annonces</h3>
 
-		<div class="box-container">
+		<div
+			class="box-container">
+
+
+			{# Affichage des annonces soumises par l'utilisateur #}
 			{% if submittedPosts is not empty %}
 				{% for post in submittedPosts %}
 
-					<form action="" method="post" class="box">
+					<form
+						class="box">
 
+
+						{# Affichage des images associées à l'annonce #}
 						{% for file in post.postImages %}
 
 
@@ -59,6 +69,7 @@
 						</div>
 
 
+						{# Affichage du statut de vente de l'annonce #}
 						{% if post.isSold() %}
 							<span style="color: green;">Vendu</span>
 						{% else %}
@@ -78,33 +89,35 @@
 
 		<h3 class="heading">Mes achats</h3>
 
-		<div class="box-container">
+		<div
+			class="box-container">
 
+			{# Affichage des annonces achetées par l'utilisateur #}
 			{% for payment in purchasedPosts %}
 
 
-				<form action="" method="post" class="box">
+				<form class="box">
 
 					{% for file in payment.Post.postImages %}
-
-
 						<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
 					{% endfor %}
+
+
 					<div class="name">
 						{{ payment.Post.postTitle }}
-
-
 					</div>
+
+
 					<div class="flex">
 
 						<div class="price">
 							<span>{{ payment.Post.postPrice }}</span>
-
 							<span>€</span>
 						</div>
 
 					</div>
+
+
 				</form>
 			{% else %}
 				<li>No purchased posts found.</li>

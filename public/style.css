@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap");
 
 :root {
-  --main-color: #2980b9;
+  /* --main-color: #2980b9; */
   --orange: #f39c12;
   --red: #e74c3c;
   --black: #333;
@@ -320,7 +320,7 @@ section {
   border: var(--border);
   text-align: center;
   padding: 2rem;
-  background: var(--white);
+  background: var(--green);
   border-radius: 0.5rem;
 }
 
@@ -336,13 +336,14 @@ section {
   color: var(--white);
 }
 
-.category .slide img {
+/* CSS pour image dans carte catégory */
+/* .category .slide img {
   height: 7rem;
   width: 100%;
   object-fit: contain;
   margin-bottom: 1rem;
   user-select: none;
-}
+} */
 
 .category .slide h3 {
   font-size: 2rem;
@@ -1292,13 +1293,13 @@ section {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color:var(--green);
+  border-color:var(--green);
 }
 
 .btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+  background-color: #a5c5a1;
+  border-color:#a5c5a1;
 }
 
 .btn-secondary {
@@ -1366,16 +1367,16 @@ section {
 }
 
 .title-mentions-cgv {
-border: 1px solid #09521f;
-border-radius: 30px;
-box-shadow:#6c757d;
-height: 50px;
-display:flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-flex-direction: column;
-margin-bottom: 10px;
+  border: 1px solid #09521f;
+  border-radius: 30px;
+  box-shadow: #6c757d;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .arrow-icon {

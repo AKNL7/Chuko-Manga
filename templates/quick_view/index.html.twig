@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello QuickViewController!
+{% block title %}
+	{{post.postTitle}}
+
 {% endblock %}
 
 {% block body %}
@@ -8,43 +10,28 @@
 
 
 		<div class="banner">
-			<img
-			src="{{asset('./images/banner/bannerChuko11.png')}}" alt="">
-
-		{# <div class="category_title heading">Post title</div> #}
+			<img src="{{asset('./images/banner/bannerChuko11.png')}}" alt="">
 		</div>
-		<!-- DEBUT FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
 
-
-		<form action="" method="post" class="box">
-			<input type="hidden" name="pid" value="">
-			<input type="hidden" name="name" value="">
-			<input type="hidden" name="price" value="">
-			<input type="hidden" name="image" value="">
+		{# Formulaire qui affiche les informations du post récupérées depuis la base de données #}
+		<form class="box">
 			<div class="row">
 				<div class="image-container">
 					<div class="main-image">
 
-{% for file in post.postImages %}
-
-
-<img src="{{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
-{% endfor %}
-
-
-
+						{% for file in post.postImages %}
+							<img src="{{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
+						{% endfor %}
 					</div>
-					<div class="sub-image">
-						<img src="" alt="">
-						<img src="" alt="">
-						<img src="" alt="">
+					<div
+						class="sub-image">{# Pour ajouter plus d'image #}
 					</div>
 				</div>
 				<div class="content">
 					<div class="name">
 						{{post.postTitle}}
 					</div>
+
 					<div class="flex">
 						<div class="price">
 							<span>{{post.postPrice}}
@@ -54,7 +41,6 @@
 
 					</div>
 					<div class="details">
-						
 						<div class="product_state">
 							<span>Etat :
 							</span>
@@ -66,41 +52,29 @@
 							<span>{{post.postEdition}}</span>
 						</div>
 						<div class="product_seller">
-Vendeur :
-{# {{ user.firstName }} #}
-{# {{ user.lastName }} #}
-
-
-	<p>Posted by:
-	
-		
-		</p>
-
-
-
-
+							<span>Vendeur :
+								{{ user.Email }}</span>
 						</div>
 					</div>
+
+
+					<div class="product_resume">
+						<p>
+							{{post.postResume}}
+						</p>
+					</div>
+
+
+					{# Bouton pour ajouter au panier #}
 					<div class="flex-btn">
 						<input type="submit" value="AJOUTER AU PANIER" class="btn" name="add_to_cart">
 					</div>
 
-					<div class="product_resume">
-						<p>
-{{post.postResume}}
-						</p>
-					</div>
 
 				</div>
 			</div>
 		</form>
-
-
-
-		<!-- FIN FORM QUI RECUPERE LES INFORMATIONS DU POST DANS LA BDD -->
-
-		<!-- Balise p en display si rien à été ajouté au panier -->
-		<p class="empty">Panier vide</p>
+		{# Fin du formulaire #}
 
 
 	</section>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!
+{% block title %}Vendre
 {% endblock %}
 
 {% block body %}
@@ -26,9 +26,6 @@
 
 			{{form_row(form.postImages)}}
 
-			{# <div class="box">
-			{{form_row(form.postResume)}}
-			</div> #}
 
 			<textarea name="{{ field_name(form.postResume) }}" value="{{ field_value(form.postResume) }}" placeholder="{{ field_label(form.postResume) }}" class="box"></textarea>
 

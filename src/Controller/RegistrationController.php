@@ -25,23 +25,27 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+         // Création d'une nouvelle instance de l'entité User
         $user = new User();
+
+         // Création du formulaire d'inscription lié à l'entité User
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+                 // Hashage du mot de passe plain
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
             );
+         // Attribution d'un rôle à l'utilisateur   
         $user->setRoles(["ROLE_USER"]);
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
+            // Envoi d'un email de confirmation pour le lien d'activation
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('contact@chuko-manga.com', 'Chuko Manga'))
@@ -50,11 +54,12 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
-            // do anything else you need here, like send an email
-
+            
+ // Redirection vers la page de vérification d'email après l'enregistrement
             return $this->redirectToRoute('app_verify');
         }
 
+            // Affichage du formulaire d'inscription
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form,
         ]);
@@ -63,26 +68,31 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
     {
+        // Vérification de l'accès complet authentifié
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
+   // Validation du lien de confirmation d'email, définit User::isVerified=true et persiste en base de données
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
+              // Gestion des erreurs de vérification d'email
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
+             // Redirection vers la page d'inscription en cas d'erreur
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+// Message flash de succès pour l'utilisateur après vérification de l'email
         $this->addFlash('success', 'Votre adresse email a été verifiée.');
 
+         // Redirection vers l'espace utilisateur après vérification de l'email
         return $this->redirectToRoute('app_my_space');
     }
 
     #[Route('/verify', name: 'app_verify')]
     public function verify(): Response
     {
+         // Affichage de la page de vérification
         return $this->render('security/verify.html.twig');
     }
 }

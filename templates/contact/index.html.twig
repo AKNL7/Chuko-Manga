@@ -9,8 +9,12 @@
 			<img src="{{ asset('./images/banner/bannerChuko4.png') }}" alt="Banner Image">
 			<div class="category_title">Contact</div>
 		</div>
+		
 		<div class="contact-form-container">
+
 			<h3>Envoyer votre message</h3>
+
+			{# Début du formulaire de contact #}
 			{{ form_start(contactForm) }}
 
 			{# Display success flash message #}
@@ -24,10 +28,12 @@
 
 			{{ form_row(contactForm.message, {'attr': {'class': 'box', 'placeholder': 'Message'}}) }}
 
-			<input type="submit" value="Send message" class="btn">
+			<input
+			type="submit" value="Send message" class="btn">
 
+
+			{# Fin du formulaire de contact #}
 			{{ form_end(contactForm) }}
 		</div>
 	</section>
 {% endblock %}
-

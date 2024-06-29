@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category
+{% block title %}
+	{{ category.name }}
+
 {% endblock %}
 
 {% block body %}
@@ -10,11 +12,8 @@
 
 		<div class="box-container">
 			{% for post in posts %}
-				<form action="" method="post" class="box">
-					<input type="hidden" name="pid" value="product_id">
-					<input type="hidden" name="name" value="product_name">
-					<input type="hidden" name="price" value="product_price">
-					<input type="hidden" name="image" value="product_image">
+				<form class="box">
+
 
 					<a href="{{ path('app_quick_view', {'id': post.id} ) }}" class="fas fa-eye"></a>
 
@@ -36,4 +35,3 @@
 	</section>
 
 {% endblock %}
-

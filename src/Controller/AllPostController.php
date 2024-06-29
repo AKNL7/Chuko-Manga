@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+// use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -15,20 +16,18 @@ class AllPostController extends AbstractController
     public function index(PostRepository $postRepository, EntityManagerInterface $entityManager ): Response
     {
 
-
+   // Récupération de tous les posts disponibles en utilisant le repository 
         $availablePosts = $postRepository->findAvailablePosts();
-        
-        // $posts = $entityManager->getRepository(Post::class)->findAll();
-        
+      
+        // Rendu du template Twig avec les posts disponibles
         return $this->render('all_post/index.html.twig', [
-            'controller_name' => 'AllPostController',
             'availablePosts' => $availablePosts,
+            
+                    ]);
+                }
+            }
           
            
             
 
             
-
-        ]);
-    }
-}

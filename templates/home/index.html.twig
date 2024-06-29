@@ -11,7 +11,7 @@
 		</div>
 	{% endfor %}
 
-	<!-- HOME CAROUSEL BEGIN -->
+	<!-- HOME SLIDER BEGIN -->
 	<div class="home-bg">
 
 		<section
@@ -31,14 +31,13 @@
 							<span>Bienvenue sur
 							</span>
 							<h3>Chuko Manga</h3>
-							<!-- <a href="category.php?category=smartphone" class="btn">Shop Now</a> -->
+
 						</div>
 					</div>
 
 					<div class="swiper-slide slide">
 						<div class="image">
 							<img src="{{asset('./images/banner/bannerChuko9.png')}}" alt="chukomangaherobanner">
-
 						</div>
 						<div class="content">
 							<span>Achetez d'occasion</span>
@@ -50,8 +49,6 @@
 					<div class="swiper-slide slide">
 						<div class="image">
 							<img src="{{asset('./images/banner/bannerChuko12.png')}}" alt="chukomangaherobanner">
-
-
 						</div>
 						<div class="content">
 							<span>Une equipe à votre écoute</span>
@@ -59,12 +56,11 @@
 							<a href={{path('app_contact')}} class="btn">Contact</a>
 						</div>
 					</div>
-
 				</div>
 
 				<div class="swiper-pagination"></div>
 
-				<!-- SWIPER HOME END   -->
+				<!-- SLIDER HOME END   -->
 
 			</div>
 
@@ -79,32 +75,26 @@
 
 		<h1 class="heading">NOS CATEGORIES</h1>
 
-		<!-- CATEGORY CAROUSEL BEGIN -->
+		<!-- CATEGORY SLIDER BEGIN -->
 		<div class="swiper category-slider">
 
 			<div class="swiper-wrapper">
-{% for category in categories|slice(0, 5)  %}
+				{% for category in categories|slice(0, 5)  %}
 
 					<a href="{{ path('app_category_posts', {'categoryId': category.id}) }}" class="swiper-slide slide">
-						<img src="" alt="">
-
-
-
-						
 						<h3>{{ category.name }}</h3>
 					</a>
 
 				{% endfor %}
-
-
 			</div>
-
 			<div class="swiper-pagination"></div>
 
 		</div>
+
+
 		<!-- CATEGORY CAROUSEL END -->
 	</section>
-	{# Section CATEGORY END #}
+	<!-- SECTION CATEGROY END -->
 
 
 	<!-- RECENT POST SECTION BEGIN -->
@@ -117,56 +107,42 @@
 
 		<div class="swiper products-slider">
 
-			<div class="swiper-wrapper">
-
+			<div
+				class="swiper-wrapper">
+				{# Boucle sur tous les posts recents #}
 				{% for latestPost in latestPosts %}
 
-					<form action="" method="post" class="swiper-slide slide">
 
-
-						{# 
-																																																																																				<input type="hidden" name="pid" value="">
-																																																																																				<input type="hidden" name="name" value="">
-																																																																																				<input type="hidden" name="price" value="">
-																																																																																				<input
-																																																																																				type="hidden" name="image" value="">  #}
-
-
-						{# <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button> #}<a href={{path('app_quick_view', {'id': latestPost.id} )}} class="fas fa-eye"> </a>
-
-
+					{# Lien vers la vue rapide du post avec une icône d'œil  #}
+					<form class="swiper-slide slide">
+						<a href={{path('app_quick_view', {'id': latestPost.id} )}} class="fas fa-eye"></a>
+						{# Boucle sur les images du post  #}
 						{% for file in latestPost.postImages %}
-
-
 							<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
 						{% endfor %}
 
 
+						{# Titre du post  #}
+
 						<div class="name">
 							{{ latestPost.postTitle }}
-
-
 						</div>
+						{# Prix du post #}
+
 						<div class="flex">
 							<div class="price">
 								<span>{{ latestPost.postPrice }}</span>
 								<span>€</span>
 
-								<!-- NUMER QUANTITY INPUT DELETE -->
+
+								{# Lien pour ajouter le post au panier #}
 								<a href="{{ path('app_cart_add', {'id': latestPost.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
-
-
 							</form>
-
-
-							<!-- <p class="empty">no products added yet!</p>'; -->
-
-
 						</div>
 					</div>
-					<div class="swiper-pagination"></div>
 
+
+					<div class="swiper-pagination"></div>
 
 				{% endfor %}
 				<!-- SLIDER RECENT POST END -->
@@ -175,60 +151,43 @@
 
 			<!-- BEST PRICE POST HOME SECTION BEGIN -->
 			<section class="home-products">
-
 				<h1 class="heading">Les Meilleurs Prix</h1>
 
 				<!-- SLIDER POST BEGIN -->
 
 
 				<div class="swiper products-slider">
-
 					<div class="swiper-wrapper">
 
 						{% for bestPricedPost in bestPricedPosts  %}
 							<form action="" method="post" class="swiper-slide slide">
-								<input type="hidden" name="pid" value="">
-								<input type="hidden" name="name" value="">
-								<input type="hidden" name="price" value="">
-								<input type="hidden" name="image" value="">
 
 
 								<a href={{ path('app_quick_view', {'id': bestPricedPost.id} ) }} class="fas fa-eye"></a>
 
 
 								{% for file in bestPricedPost.postImages %}
-
-
 									<img src=" {{ asset('uploads/' ~ file.postImage) }}" alt="postimage">
-
 								{% endfor %}
 
 
 								<div class="name">
 									{{ bestPricedPost.postTitle }}
-
 								</div>
 								<div class="flex">
 									<div class="price">
 										<span>{{  bestPricedPost.postPrice }}</span>
-
 										<span>€</span>
 
-										<!-- NUMER QUANTITY INPUT DELETE -->
 
-<a href="{{ path('app_cart_add', {'id': bestPricedPost.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
-
-
-
-										<!-- <p class="empty">no products added yet!</p>'; -->
+										<a href="{{ path('app_cart_add', {'id': bestPricedPost.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
 
 
 									</div>
 								</form>
-
 							</div>
-							<div class="swiper-pagination"></div>
 
+							<div class="swiper-pagination"></div>
 
 							<!-- SLIDER POST END -->
 						{% endfor %}
@@ -239,12 +198,16 @@
 
 						<!-- SLIDERS JS & RESPONSIVE-->
 						<script>
+							// Initialisation du slider principal (home-slider)
 
-							var swiper = new Swiper(".home-slider", {
-loop: true,
-spaceBetween: 20,
+var swiper = new Swiper(".home-slider", {
+loop: true, // Active la répétition infinie des slides
+
+spaceBetween: 20, // Espace entre les slides en pixels
+
 pagination: {
-el: ".swiper-pagination",
+el: ".swiper-pagination", // Sélecteur de l'élément de pagination
+
 clickable: true
 }
 });
@@ -254,8 +217,13 @@ loop: true,
 spaceBetween: 20,
 pagination: {
 el: ".swiper-pagination",
-clickable: true
+clickable: true // Permet de cliquer sur la pagination pour naviguer
+
 },
+// Configuration des différents points d'arrêt pour la réactivité
+
+// Nombre de slides visibles à partir de la largeur d'écran (pixels)
+
 breakpoints: {
 0: {
 slidesPerView: 2
@@ -291,9 +259,9 @@ slidesPerView: 3
 }
 }
 });
+
 						</script>
 						<!-- SLIDER JS & RESPONSIVE END -->
-
 					{% endblock %}
 
 				{% endblock %}
