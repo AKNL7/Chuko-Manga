@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+<meta
+name="description" content="Connectez-vous à Chuko Manga pour gérer vos annonces, consulter vos achats et profiter d'une expérience personnalisée. Rejoignez notre communauté de passionnés de mangas !">
+<!--Seo Réseaux-->
+<meta property="og:title" content="Chuko Manga">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Connectez-vous à Chuko Manga pour gérer vos annonces, consulter vos achats et profiter d'une expérience personnalisée. Rejoignez notre communauté de passionnés de mangas !">
+<meta property="og:image" content="public\LogoChukoManga5.ico">
+<meta property="og:site_name" content="Chuko Manga">
+<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+
+{% endblock %}
+
+
 {# Lorsqu'un utilisateur a verifier son email il est rediriger ici #}
 {% block stylesheetsVisibility %}{% endblock %}
 

@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+	<meta
+	name="description" content="Inscrivez-vous gratuitement sur Chuko Manga et accédez à une vaste collection de mangas d'occasion. Créez un compte pour vendre vos livres, sauvegarder vos recherches et bien plus encore.">
+	<!--Seo Réseaux-->
+	<meta property="og:title" content="Chuko Manga">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="Inscrivez-vous gratuitement sur Chuko Manga et accédez à une vaste collection de mangas d'occasion. Créez un compte pour vendre vos livres, sauvegarder vos recherches et bien plus encore.">
+	<meta property="og:image" content="public\LogoChukoManga5.ico">
+	<meta property="og:site_name" content="Chuko Manga">
+	<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+
+{% endblock %}
+
+
 {% block title %}Inscrivez Vous
 {% endblock %}
 
@@ -12,14 +26,13 @@
 	<section class="form-container">
 
 
-
 		<form action="" method="post">
 
 			{{ form_errors(registrationForm) }}
 
 			{{ form_start(registrationForm) }}
 
-		     <h3>Inscrivez Vous</h3>
+			<h3>Inscrivez Vous</h3>
 
 			<input name="{{ field_name(registrationForm.firstName) }}" value="{{ field_value(registrationForm.firstName) }}" placeholder="{{ field_label(registrationForm.firstName) }}" class="box">
 
@@ -33,13 +46,11 @@
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" name="{{ field_name(registrationForm.agreeTerms) }}" value="{{ field_value(registrationForm.agreeTerms) }}" placeholder="{{ field_label(registrationForm.agreeTerms) }}">
-                        Veuillez accepter les conditions d'utilisation de vos données personelles
+						Veuillez accepter les conditions d'utilisation de vos données personelles
 					</label>
-					
-				</div>
-				<a href={{path('app_rgpd')}} >Mentions légales et CGV</a>
-						
 
+				</div>
+				<a href={{path('app_rgpd')}}>Mentions légales et CGV</a>
 
 
 				<button type="submit" class="btn">Je m'inscris</button>

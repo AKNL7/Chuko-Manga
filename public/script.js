@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   inputPassword.type = "password";
   // });
 
-  // Gestion des Menus déroulants
+  // Gestion des Menus déroulants CGV
   const toggles = document.querySelectorAll(".toggle");
 
   toggles.forEach((toggle) => {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-     // Gestion de l'animation d'ajout au panier
+    //  Gestion de l'animation d'ajout au panier
     // const addToCartLinks = document.querySelectorAll('.add-to-cart');
 
     // addToCartLinks.forEach(link => {
@@ -81,10 +81,47 @@ document.addEventListener("DOMContentLoaded", function () {
     //             link.classList.remove('added-to-cart');
     //         }, 1000); // 1000 millisecondes (1 seconde) - ajustez selon votre animation
 
-    //         // Optionnel : pouvez également ajouter une notification, etc.
+    
     //     });
     // });
 
+  document.addEventListener("DOMContentLoaded", function () {
+    const itemCount = document.querySelector(".item-count");
+
+    function updateItemCount(count) {
+      itemCount.textContent = count;
+
+      itemCount.animate(
+        [{ transform: "scale(1.2)" }, { transform: "scale(1)" }],
+        {
+          duration: 300,
+          easing: "ease-out",
+        }
+      );
+    }
+
+    document.body.addEventListener("click", function (e) {
+      if (e.target.matches(".add-to-cart")) {
+        e.preventDefault();
+        const url = e.target.href;
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Réponse du serveur:", data);
+            if (data.success) {
+              updateItemCount(data.cartTotal);
+            }
+          })
+          .catch((error) => console.error("Erreur:", error));
+      }
+    });
+  });
 
   function togglePasswordVisibility() {
             var passwordInput = document.getElementById("inputPassword");

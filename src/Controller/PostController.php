@@ -72,22 +72,27 @@ class PostController extends AbstractController
           $newfile = new Files();
           $newfile->setPostImage($newFilename);
           $post->addPostImage($newfile);
+          $newfile->setPost($post); // Associe le fichier à l'annonce
+          $entityManager->persist($newfile); 
         }
 
-
-
+        $post->setIsValid(false);
+        $post->setIsSold(false); // Par défaut, l'annonce n'est pas vendue
+        $entityManager->persist($post);
+        $entityManager->flush();
+        
 
 
         // Persiste les entités et flush en base de données
-        $entityManager->persist($newfile); // Persiste le dernier fichier ajouté
-        $post->setIsValid(false); // Définit l'annonce comme non validée par défaut
-        $entityManager->persist($post);
-        $entityManager->flush();
+        // $entityManager->persist($newfile);
+        // $post->setIsValid(false); 
+        // $entityManager->persist($post);
+        // $entityManager->flush();
 
         // Marque l'annonce comme vendue (exemple de mise à jour de statut)
-        $post->setIsSold(true); // Met à jour le statut de vendu
-        $entityManager->persist($post);
-        $entityManager->flush();
+        // $post->setIsSold(true); // Met à jour le statut de vendu
+        // $entityManager->persist($post);
+        // $entityManager->flush();
 
         // Redirige vers une page de succès après la soumission
         return $this->redirectToRoute('app_post_success');

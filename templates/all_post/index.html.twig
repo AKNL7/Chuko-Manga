@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+	<meta
+	name="description" content="Parcourez toutes les annonces de mangas d'occasion sur Chuko Manga. Découvrez des milliers de titres, de collections complètes à des séries rares, et trouvez votre prochain coup de cœur littéraire.">
+	<!--Seo Réseaux-->
+	<meta property="og:title" content="Chuko Manga">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="Parcourez toutes les annonces de mangas d'occasion sur Chuko Manga. Découvrez des milliers de titres, de collections complètes à des séries rares, et trouvez votre prochain coup de cœur littéraire.">
+	<meta property="og:image" content="{{ asset('LogoChukoManga5.ico') }}">
+	<meta property="og:site_name" content="Chuko Manga">
+	<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+
+{% endblock %}
+
+
 {% block title %}Nos annonces
 {% endblock %}
 
@@ -20,11 +34,9 @@
 			{% for post in availablePosts %}
 
 
-				<!-- Formulaire pour chaque post -->
-				<form
-					class="box">
+				<form class="box">
 
-					<!-- Lien vers la vue rapide du post avec une icône d'œil -->
+
 					<a href={{ path('app_quick_view', {'id': post.id} ) }} class="fas fa-eye"></a>
 
 
@@ -46,12 +58,17 @@
 
 					<!-- Lien pour ajouter le post au panier -->
 					<a href="{{ path('app_cart_add', {'id': post.id}) }}" class="btn add-to-cart">Ajouter au panier</a>
+
+
 				</form>
+
+
 			{% endfor %}
 		</div>
 
+
 		<!-- CARD POST END -->
-		<p class="empty">no products found!</p>
+
 
 	</section>
 

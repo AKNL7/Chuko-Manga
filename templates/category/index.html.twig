@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+	<meta
+	name="description" content="Explorez les différentes catégories de mangas d'occasion sur Chuko Manga. Que vous cherchiez des shōnen, des seinen, des yaoi, ou d'autres genres, trouvez facilement ce que vous cherchez.">
+	<!--Seo Réseaux-->
+	<meta property="og:title" content="Chuko Manga">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="Explorez les différentes catégories de mangas d'occasion sur Chuko Manga. Que vous cherchiez des shōnen, des seinen, des yaoi, ou d'autres genres, trouvez facilement ce que vous cherchez.">
+	<meta property="og:image" content="public\LogoChukoManga5.ico">
+	<meta property="og:site_name" content="Chuko Manga">
+	<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+
+{% endblock %}
+
+
 {% block title %}
 	{{ category.name }}
 
@@ -8,7 +22,7 @@
 {% block body %}
 
 	<section class="products">
-		<h1 class="heading">Toutes les annonces de la catégorie "{{ category.name }}"</h1>
+		<h1 class="heading">{{ category.name }}</h1>
 
 		<div class="box-container">
 			{% for post in posts %}

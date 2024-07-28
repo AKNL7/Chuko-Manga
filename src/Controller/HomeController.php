@@ -15,9 +15,9 @@ class HomeController extends AbstractController
 
 
 
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     
-    // La méthode index est appelée lorsque l'utilisateur accède à la route '/home'
+
 
     // Elle reçoit en paramètres les repositories nécessaires pour récupérer les données
 

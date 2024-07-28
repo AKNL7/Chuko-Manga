@@ -4,11 +4,20 @@ namespace App\Controller;
 
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class CartController extends AbstractController
 {
+    private $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
+    
     #[Route('/profile/cart', name: 'app_cart')]
     public function index(CartService $cartService): Response
     {
@@ -29,10 +38,18 @@ class CartController extends AbstractController
 
     // Route pour ajouter un article au panier
     #[Route('/profile/cart/add/{id}', name: 'app_cart_add')]
-    public function add(CartService $cartService, int $id)
+    public function add(CartService $cartService, Request $request, int $id): Response
     {
-        // Ajoute l'article avec l'ID spécifié au panier
-        $cartService->add($id);
+        $this->cartService->add($id);
+        $newTotal = $this->cartService->getTotalQuantity();
+
+        if ($request->isXmlHttpRequest()) {
+            return new JsonResponse([
+                'success' => true,
+                'cartTotal' => $newTotal
+            ]);
+        }
+
         return $this->redirectToRoute('app_cart');
     }
 

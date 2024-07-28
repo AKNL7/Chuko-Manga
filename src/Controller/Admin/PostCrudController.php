@@ -49,12 +49,7 @@ class PostCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        // $categories = $this->entityManager->getRepository(Category::class)->findAll();
-        // dump($categories);
-        // // Create an array of choices for the AssociationField
-        // $choices = [];
-        // foreach ($categories as $category) {
-        //     $choices[$category->getName()] = $category;
+     
 
         return [
             IdField::new('id')->hideOnForm(),

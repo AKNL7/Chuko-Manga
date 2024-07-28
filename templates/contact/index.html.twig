@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+	<meta
+	name="description" content="Contactez Chuko Manga pour toute question ou assistance. Notre équipe est là pour vous aider avec vos annonces, vos achats ou toute autre demande. Nous serons ravis de vous aider !">
+	<!--Seo Réseaux-->
+	<meta property="og:title" content="Chuko Manga">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="Contactez Chuko Manga pour toute question ou assistance. Notre équipe est là pour vous aider avec vos annonces, vos achats ou toute autre demande. Nous serons ravis de vous aider !">
+	<meta property="og:image" content="public\LogoChukoManga5.ico">
+	<meta property="og:site_name" content="Chuko Manga">
+	<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+{% endblock %}
+
+
 {% block title %}Contact
 {% endblock %}
 
@@ -9,10 +22,10 @@
 			<img src="{{ asset('./images/banner/bannerChuko4.png') }}" alt="Banner Image">
 			<div class="category_title">Contact</div>
 		</div>
-		
-		<div class="contact-form-container">
 
-			<h3>Envoyer votre message</h3>
+		<div
+			class="contact-form-container">
+
 
 			{# Début du formulaire de contact #}
 			{{ form_start(contactForm) }}
@@ -28,12 +41,11 @@
 
 			{{ form_row(contactForm.message, {'attr': {'class': 'box', 'placeholder': 'Message'}}) }}
 
-			<input
-			type="submit" value="Send message" class="btn">
+			{# <input
+						type="submit" value="Send message" class="btn"> #}
 
 
 			{# Fin du formulaire de contact #}
-			{{ form_end(contactForm) }}
-		</div>
-	</section>
-{% endblock %}
+		{{ form_end(contactForm) }}
+	</div>
+</section>{% endblock %}

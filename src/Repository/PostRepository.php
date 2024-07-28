@@ -21,7 +21,7 @@ class PostRepository extends ServiceEntityRepository
     /**
      * @return Post[] Returns an array of Post objects
      */
-    public function findLatestPosts(int $limit = 2): array
+    public function findLatestPosts(int $limit = 6): array
     {
         return $this->createQueryBuilder('p')
             ->where('p.isValid = :valid')

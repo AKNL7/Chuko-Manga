@@ -1,7 +1,24 @@
 {% extends 'base.html.twig' %}
 
+{% block seo %}
+	<meta
+	name="description" content="Découvrez Chuko Manga, le site de petites annonces dédié aux livres d'occasion entre particuliers. Achetez et vendez vos mangas préférés facilement et rapidement. Rejoignez notre communauté de passionnés dès aujourd'hui !">
+
+	<!--Seo Réseaux-->
+	<meta property="og:title" content="Chuko Manga">
+	<meta property="og:type" content="website">
+	<meta property="og:description" content="Découvrez Chuko Manga, le site de petites annonces dédié aux livres d'occasion entre particuliers. Achetez et vendez vos mangas préférés facilement et rapidement. Rejoignez notre communauté de passionnés dès aujourd'hui !">
+	<meta property="og:image" content="public\LogoChukoManga5.ico">
+
+	<meta property="og:site_name" content="Chuko Manga">
+	<meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+
+{% endblock %}
+
+
 {% block title %}Chuko Manga
 {% endblock %}
+
 
 {% block body %}
 

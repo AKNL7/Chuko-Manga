@@ -29,15 +29,16 @@ class CartService
 
         // Vérification de si l'article est déjà présent dans le panier
         if (!empty($cart[$id])) {
-            // Si l'article existe, on incrémente sa quantité
+            
             $cart[$id]++;
         } else {
             // Si l'article n'existe pas, on l'ajoute avec une quantité de 1
             $cart[$id] = 1;
         }
 
-        // Sauvegarde du panier mis à jour dans la session
+       
         $session->set('cart', $cart);
+        
     }
 
     // Méthode pour diminuer la quantité d'un article dans le panier
@@ -107,4 +108,13 @@ class CartService
         // Retourne le total calculé du panier
         return $total;
     }
+
+    // Méthode pour obtenir le nombre total d'articles dans le panier
+    public function getTotalQuantity(): int
+    {
+        $session = $this->requestStack->getSession();
+        $cart = $session->get('cart', []);
+        return array_sum($cart);
+    }
+  
 }
