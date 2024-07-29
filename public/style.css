@@ -903,28 +903,6 @@ section {
   background-color: var(--black);
 }
 
-/* WHISLIST PAGE (NO USE) */
-
-.wishlist-total {
-  max-width: 50rem;
-  margin: 0 auto;
-  margin-top: 3rem;
-  background-color: var(--white);
-  border: var(--border);
-  border-radius: 0.5rem;
-  padding: 2rem;
-  text-align: center;
-}
-
-.wishlist-total p {
-  font-size: 2.5rem;
-  color: var(--black);
-  margin-bottom: 2rem;
-}
-
-.wishlist-total p span {
-  color: var(--red);
-}
 
 /* CART PAGE */
 .shopping-cart .fa-edit {
@@ -1006,7 +984,7 @@ section {
 }
 
 /* ORDER PAGE */
-
+/* 
 .display-orders {
   text-align: center;
   padding-bottom: 0;
@@ -1119,7 +1097,7 @@ section {
 
 .orders .box-container .box p span {
   color: var(--main-color);
-}
+} */
 
 /* FOOTER */
 .footer {
@@ -1454,6 +1432,20 @@ section {
   line-height: 60px;
 
 }
+
+/* PAGE CATEGORY */
+
+.category-title {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-bottom: 30px;
+  background-color: #fff; 
+  border-radius: 4px; 
+  text-align: center;
+
+
+}
 /* RESPONSIVE */
 
 @media (max-width: 991px) {
@@ -1545,7 +1537,7 @@ section {
     padding: 15px;
   }
   .heading {
-    font-size: 1.2em;
+    font-size: 3em;
   }
   .data p {
     font-size: 1em;
@@ -1562,6 +1554,8 @@ section {
   .item-count {
     right: 50px;
   }
+
+
 }
 
 @media (max-width: 450px) {
